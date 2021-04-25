@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en
+" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>U-ETDS | Kullanıcı Listesi</title>
+
+    <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
+    <script th:src="@{/js/pace.min.js}"></script>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style_edit.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <!--Bootstrap Datepicker-->
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+
+    <link th:href="@{/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- Start wrapper-->
+<div id="wrapper">
+
+
+    <div id="loading-screen" style="display: none; background-color: white">
+        <div class='loader'>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--text'></div>
+        </div>
+    </div>
+    <!--Start sidebar-topbar-wrapper-->
+    <div th:replace="SideBar :: navbar"/>
+    <!--End sidebar-topbar-wrapper-->
+
+    <div class="clearfix"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumb-->
+            <div class="row pt-2 pb-2">
+                <div class="col-sm-9">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javaScript:void(0);">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item"><a href="javaScript:void(0);">Kullanıcı Ayarları</a></li>
+                    </ol>
+                </div>
+                <div class="col-sm-3">
+                    <div class="btn-group float-sm-right m-1" role="group">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Hızlı Erişim
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item"
+                               style="font-size: small; background-color: rgba(129, 90, 232, 0.15);">Teknik Destek</a>
+                            <a href="/teknikdestek/olustur" class="dropdown-item text-center" style="font-size: small">Teknik
+                                Destek Talebi</a>
+                            <a href="/teknikdestek/taleplerim" class="dropdown-item text-right"
+                               style="font-size: small">&emsp;&emsp;Teknik Destek Taleplerim</a>
+                            <a class="dropdown-item "
+                               style="font-size: small; background-color: rgba(129, 90, 232, 0.15);">Öneri /
+                                Şikayetleriniz</a>
+                            <a href="/oneri/olustur" class="dropdown-item text-center" style="font-size: small">Öneri /
+                                Şikayet Talebi</a>
+                            <a href="/oneri/onerilerim" class="dropdown-item pull-right" style="font-size: small">&emsp;&emsp;Öneri
+                                / Şikayet Taleplerim</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/iletisim/iletisim" class="dropdown-item">İletişim</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card">
+                        <div class="card-header gradient-deepblue text-white  text-uppercase">KULLANICILARIM</div>
+                        <div class="ribbon-content"></div>
+                        <div class="card-body">
+                            <!-- Form Başlangıç-->
+                            <form id="FormSave">
+                                <div class="form-group row">
+                                    <div class="col-md-12 card-header"><i class="fa fa-table"></i>&nbsp;KULLANICI
+                                        TABLOSU
+                                        <div style="position: absolute; bottom: 10px; right: 10px;" align="right"
+                                             class="btn-group">
+                                            <a href="/kullanici/ekle" class="btn btn-success">YENİ KULLANICI EKLE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="example" class="table table-bordered" style="width: 100%">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>İŞ UNVANI</th>
+                                            <th>KULLANICI ADI</th>
+                                            <th>ADI</th>
+                                            <th>SOYADI</th>
+                                            <th>TELEFON NUMARASI</th>
+                                            <th>YETKİ</th>
+                                            <th>DURUM</th>
+                                            <th>İŞLEM</th>
+                                        </tr>
+                                        </thead>
+
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal animated rollIn" id="confirmDeleteModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Silme Onayı</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Silmek istediğinizden emin misiniz?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-times"></i>İptal
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="btnDelete"><i
+                            class="fa fa-check-square-o"></i> Sil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay toggle-menu"></div>
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+</div><!--End wrapper-->
+<!--Start footer wrapper-->
+<div th:replace="Footer :: footer"/>
+<!--End footer-wrapper-->
+
+<!--<script>-->
+<!--    // Popup Al-->
+<!--    var modal = document.getElementById('myModal');-->
+<!--    // Kipi açan düğmeyi al-->
+<!--    var btn = document.getElementById("myBtn");-->
+<!--    // Kipi kapatan <span> öğesini edinin-->
+<!--    var span = document.getElementsByClassName("close")[0];-->
+<!--    // Kullanıcı düğmeyi tıklattığında-->
+<!--    btn.onclick = function() {-->
+<!--        modal.style.display = "block";-->
+<!--    }-->
+<!--    // Kullanıcı <span> (x) düğmesini tıkladığında, popup-->
+<!--    span.onclick = function() {-->
+<!--        modal.style.display = "none";-->
+<!--    }-->
+<!--    // Kullanıcı modelden başka herhangi bir yeri tıklattıysa, onu kapatın.-->
+<!--    window.onclick = function(event) {-->
+<!--        if (event.target == modal) {-->
+<!--            modal.style.display = "none";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+
+
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+<!--Form Validatin Script-->
+<script th:src="@{/plugins/jquery-validation/js/jquery.validate.min.js}"></script>
+
+<script th:src="@{/plugins/bootstrap-datatable/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/dataTables.buttons.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/jszip.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/pdfmake.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/vfs_fonts.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.html5.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.print.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-datatable/js/buttons.colVis.min.js}"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#example').DataTable({
+                lengthChange: false,
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible',
+                            footer: true,
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: ':visible',
+                            footer: true,
+                        }
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        exportOptions: {
+                            columns: ':visible',
+                            footer: true,
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: ':visible',
+                            footer: true,
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible',
+                            footer: true,
+                        }
+                    },
+                    'colvis',
+                ],
+                columnDefs: [ {
+                    targets: 0,
+                    visible: false
+                } ],
+                processing: false,
+                serverSide: false,
+                ajax: {
+                    "url": "/kullanici/fetch",
+                    "type": "POST",
+                    "dataSrc": function (response) {
+                        console.log(response);
+                        return JSON.parse(JSON.stringify(response));
+                    }
+                },
+                columns: [
+                    {"data": "id", "visible": false},
+                    {"data": "companyInRole"},
+                    {"data": "email"},
+                    {"data": "ad"},
+                    {"data": "soyad"},
+                    {"data": "telefon"},
+                    {"data": "roles"},
+                    {
+                        data: "active", render: function (data, type, row) {
+                            var durums;
+                            if (data == 0) {
+                                durums = "<span class=\"badge badge-danger shadow-danger m-1\">" +
+                                    'Pasif'
+                                "</span>"
+                            } else if (data == 1) {
+                                durums = "<span class=\"badge badge-success shadow-success m-1\"> " +
+                                    'Aktif'
+                                "</span>"
+                            }
+                            return durums;
+                        }
+                    },
+                    {
+                        data: "id", render: function (data, type, row) {
+                            return "<div class='btn-group'>" +
+                                "<a href='#' data-id='" + row.id + "' class='btnConfirmDelete btn btn-outline-danger btn-sm btn-icon-split float-right'>" +
+                                "<span class='icon text-danger-50'>" +
+                                "<i class='fa fa-trash fa-fw'></i>" +
+                                "</span>" +
+                                "<span class='text delete-btn'>&nbsp;Sil</span>" +
+                                "</a>" +
+                                "<a href='/kullanici/update/?id=" + row.id + "' class='btn btn-primary btn-sm btn-icon-split  float-right'>" +
+                                "<span class='icon text-white-50'>" +
+                                "<i class='fa fa-edit fa-fw'></i>" +
+                                "</span>" +
+                                "<span class='text add-model-btn'>&nbsp;Düzenle</span>" +
+                                "</a>" +
+                                "</div>";
+                        }
+                    },
+                ],
+                language: {
+                    "sDecimal": ",",
+                    "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+                    "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                    "sInfoEmpty": "Kayıt yok",
+                    "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                    "sLoadingRecords": "Yükleniyor...",
+                    "sProcessing": "İşleniyor...",
+                    "sSearch": "Ara:",
+                    "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                    "oPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                        "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "%d kayıt seçildi",
+                            "0": "",
+                            "1": "1 kayıt seçildi"
+                        }
+                    }
+                }
+            }
+        );
+        var dataID;
+        $(document).on('click', '.btnConfirmDelete', function () {
+            dataID = $(this).data('id');
+            $('#confirmDeleteModal').modal('show');
+        });
+        $("#btnDelete").click(function () {
+            $('#loading-screen').fadeIn();
+            $.ajax({
+                url: "/kullanici/delete",
+                type: "post",
+                data: {id: dataID},
+                success: function (response) {
+                    $('#loading-screen').fadeOut('slow');
+                    table.ajax.reload();
+                    $('#confirmDeleteModal').modal('hide');
+                    if (response.result) {
+                        success_noti();
+                    } else {
+                        error_noti();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        });
+        table.buttons().container()
+            .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+</script>
+</body>
+</html>

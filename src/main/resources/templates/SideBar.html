@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale-2, shrink-to-fit=no">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+</head>
+<body>
+<div th:fragment="navbar">
+    <!--Start sidebar-wrapper-->
+    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+        <div class="brand-logo">
+            <a href="/anasayfa/dash">
+                <img th:src="@{/images/logo-icon.png}" class="logo-icon" alt="logo icon">
+            </a>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a href="/anasayfa/dash"><i class="zmdi zmdi-view-dashboard"></i> Ana Sayfa</a></li>
+            <span>İŞ ARAÇLARI</span>
+
+            <li sec:authorize="hasAnyRole('YUK_USER,ADMIN,YUK_ALT,YUK_BILDIRIM')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-truck"></i>
+                    <span>Yük Taşıma</span> <i class="fa fa-angle-left pull-right"></i>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/yuk/bildirim"><i class="zmdi zmdi-skip-next"></i> Yük Bildirim Girişi</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/yuk/topluBildirim"><i class="zmdi zmdi-fast-forward" -></i> Toplu Bildirimi</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/yuk/yukler"><i class="zmdi zmdi-view-headline"></i> Girişi Yapılmış Yükler</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('TARIFELI_USER, TARIFELI_ALT, TARIFELI_BILDIRIM, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-bus"></i><!--   Menü sekme iconu Değiştirildi.-->
+                    <span>Tarifeli Yolcu Taşıma</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/tarifeli/bildirim"><i class="zmdi zmdi-skip-next"></i> Sefer Girişi</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li class="LiDisabled"><a class="LiDisabled" href="/tarifeli/hatizin"><i
+                            class="zmdi zmdi-arrow-missed"></i> Hat İzinleri</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/tarifeli/topluBildirim"><i class="zmdi zmdi-fast-forward" -></i> Toplu Bildirim</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/tarifeli/seferler"><i class="zmdi zmdi-view-headline"></i> Girişi Yapılmış
+                        Seferler</a></li><!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('TARIFESIZ_USER, ADMIN, TARIFESIZ_ALT, TARIFESIZ_BILDIRIM')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-car-taxi"></i><!--   Menü sekme iconu Değiştirildi.-->
+                    <span>Tarifesiz Yolcu Taşıma</span>
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/tarifesiz/bildirim"><i class="zmdi zmdi-skip-next"></i> Sefer Girişi</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/tarifesiz/topluBildirim"><i class="zmdi zmdi-fast-forward" -></i> Toplu Bildirim</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/tarifesiz/seferler"><i class="zmdi zmdi-view-headline"></i> Girişi Yapılmış
+                        Seferler</a></li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/tarifesiz/transferBelgesi"><i class="zmdi zmdi-pages"></i> Transfer Belgesi</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('TERMINAL_USER, ADMIN,TERMINAL_BILDIRIM, TERMINAL_ALT')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-pin-drop"></i><!--   Menü sekme iconu Değiştirildi.-->
+                    <span>Terminal Bildirimi</span>
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li sec:authorize="hasAnyRole('TERMINAL_USER, ADMIN,TERMINAL_BILDIRIM, TERMINAL_ALT')"><a
+                            href="/terminal/bildirim"><i class="zmdi zmdi-skip-next"></i> Hareket Girişi</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('TERMINAL_USER, ADMIN,TERMINAL_BILDIRIM, TERMINAL_ALT')"><a
+                            href="/terminal/hareketler"><i class="zmdi zmdi-view-headline"></i> Tüm Hareketler</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('TERMINAL_USER, ADMIN,TERMINAL_BILDIRIM, TERMINAL_ALT')"><a
+                            href="/terminal/topluBildirim"><i class="zmdi zmdi-square-down"></i> Toplu Hareket Bildirimi</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT, ADMIN')">
+                <a href="/adr/olustur"><i class="zmdi zmdi-file-text"></i><span>Taşıma Evrağı</span></a>
+                <!--   Menü sekme iconu Değiştirildi.-->
+            </li>
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_BILDIRIM, YUK_ALT,TARIFELI_USER,TARIFELI_ALT, TARIFELI_BILDIRIM,TARIFESIZ_USER,TARIFESIZ_ALT, TARIFESIZ_BILDIRIM,TERMINAL_USER,TERMINAL_BILDIRIM, TERMINAL_ALT,ADMIN,')">
+                <a href="/hgs/dash"><i class="zmdi zmdi-collection-text"></i><span>HGS Kurumsal</span></a>
+                <!--   Menü sekme iconu Değiştirildi.-->
+            </li>
+            <span sec:authorize="hasAnyRole('YUK_USER,TARIFELI_USER,TARIFESIZ_USER,TERMINAL_USER,ADMIN')">YÖNETİM ARAÇLARI</span>
+
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT, TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TERMINAL_BILDIRIM, TARIFESIZ_USER, TARIFESIZ_ALT, TARIFESIZ_BILDIRIM, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-local-shipping"></i><!--   Menü sekme iconu Değiştirildi.-->
+                    <span>Araç Yönetimi</span>
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT, TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/arac/ekle"><i class="zmdi zmdi-skip-next"></i> Yeni Araç Ekle</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT, TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/arac/kiralikarac"><i class="zmdi zmdi-calendar-alt"></i> Sözleşmeli Araç Ekle</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT, TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TERMINAL_BILDIRIM, TARIFESIZ_USER, TARIFESIZ_ALT, TARIFESIZ_BILDIRIM, ADMIN')">
+                        <a href="/arac/araclar"><i class="zmdi zmdi-view-headline"></i> Tüm Araçlar</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT, TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/arac/topluEkleme"><i class="zmdi zmdi-car-wash"></i> Toplu Araç Ekleme</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT, TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TERMINAL_BILDIRIM, TARIFESIZ_USER, TARIFESIZ_ALT, TARIFESIZ_BILDIRIM, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-accounts"></i><span>Personel Yönetimi</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT, TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/personel/ekle"><i class="zmdi zmdi-account-add"></i> Yeni Personel Ekle</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT, TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TERMINAL_BILDIRIM, TARIFESIZ_USER, TARIFESIZ_ALT, TARIFESIZ_BILDIRIM, ADMIN')">
+                        <a href="/personel/personeller"><i class="zmdi zmdi-accounts-list-alt"></i> Tüm Personeller</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT, TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/personel/topluEkle"><i class="zmdi zmdi-accounts-add"></i> Toplu Personel Ekle</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-card-travel"></i> <span>Acente Yönetimi</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/acente/ekle"><i
+                                class="zmdi zmdi-card-travel"></i><span> Bayi ve Acente Ekle</span></a>
+                        <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/acente/acenteler"><i class="zmdi zmdi-collection-text"></i><span>Tüm Acenteler</span></a>
+                        <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+
+            <li sec:authorize="hasAnyRole('YUK_USER,TARIFELI_USER,TARIFESIZ_USER,ADMIN')"><a href="/genel/rapor"><i
+                    class="zmdi zmdi-grid"></i><span>Raporlama</span></a><!--   Menü sekme iconu Değiştirildi.-->
+            </li>
+
+            <span sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT,ADMIN')">ARAÇ TAKİP PANELİ</span>
+
+            <li>
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT,ADMIN')">
+                <a href="/takip/canliHarita"><i class="zmdi zmdi-map"></i> Canlı İzleme</a></li>
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT,ADMIN')">
+                <a href="/takip/gecmisIzleme"><i class="zmdi zmdi-map"></i> İzleme Geçmişi</a></li>
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT,ADMIN')">
+                <a href="/takip/rapor"><i class="zmdi zmdi-google-maps"></i> Standart Rapor</a></li>
+            <!--   Menü sekme iconu Değiştirildi.-->
+            <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT,ADMIN')">
+                <a href="/takip/kontakRapor"><i class="zmdi zmdi-google-maps"></i> Kontak Raporu</a></li>
+            <!--                    <li><a href="/arac/kiralikarac"><i class="zmdi zmdi-calendar-alt"></i> Araç Takip</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+            <!--                    <li><a href="/arac/topluEkleme"><i class="zmdi zmdi-car-wash"></i> Araç Takip</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+            </li>
+
+            <span sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')">MUHASEBE PANELİ</span>
+
+            <li>
+                <!--                <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')"><a href="/CariFirma/CariFirmalar"><i class="zmdi zmdi-assignment-account"></i> Cari Firma Yönetimi</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-accounts-list-alt"></i> <span> Cari Firma Yönetimi</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/CariFirma/CariFirmaOlustur"><i class="zmdi zmdi-assignment-account"></i> Cari Firma
+                        Oluştur</a></li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/CariFirma/CariFirmalar"><i class="zmdi zmdi-accounts-list-alt"></i> Cari
+                        Firmalarım</a></li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/CariFirma/topluCariFirma"><i class="zmdi zmdi-accounts-add"></i> Cari Firma Toplu
+                        Ekleme</a></li><!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')">
+                <a href="/kasaetikettablo/kasaetiket"><i class="zmdi zmdi-reader"></i>Kasa ve Etiket Yönetimi</a></li>
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')">
+                <a href="/gelirgidermuh/yonet"><i class="zmdi zmdi-swap"></i> Gelir ve Gider Yönetimi</a></li>
+            <!--   Menü sekme iconu Değiştirildi.-->
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-assignment-o"></i> <span> İrsaliye Yönetimi</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/irsaliye/olustur"><i class="zmdi zmdi-reader"></i> İrsaliye Oluştur</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/muhasebe/irsaliye"><i class="zmdi zmdi-accounts-list-alt"></i> İrsaliyelerim</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/muhasebe/eirsaliye"><i class="zmdi zmdi-print"></i> E-İrsaliyelerim</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-collection-text"></i> <span> Fatura Yönetimi</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/fatura/ekle"><i class="zmdi zmdi-reader"></i> Fatura Oluştur</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/muhasebe/fatura"><i class="zmdi zmdi-accounts-list-alt"></i> Faturalarım</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li><a href="/muhasebe/efatura"><i class="zmdi zmdi-print"></i> E-Faturalarım</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <!--                <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')"><a href="/muhasebe/irsaliye"><i class="zmdi zmdi-assignment-o"></i> İrsaliye Yönetimi</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+            <!--                <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')"><a href="/muhasebe/fatura"><i class="zmdi zmdi-collection-text"></i> Fatura Yönetimi</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+            <!--                <li sec:authorize="hasAnyRole('YUK_USER,YUK_MUHASEBE, TARIFELI_USER,TARIFELI_MUHASEBE, TERMINAL_USER, TERMİNAL_MUHASEBE, TARIFESIZ_USER, TARIFESIZ_MUHASEBE, ADMIN')"><a href="/muhasebe/efatura"><i class="zmdi zmdi-print"></i> E-Fatura</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+            <span sec:authorize="hasAnyRole('YUK_USER,YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">YÖNETİM PANELİ</span>
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                <a href="/genel/ayarlar"><i class="zmdi zmdi-settings-square"></i><span> Firma Genel Ayarları</span></a>
+            </li>
+
+
+            <li sec:authorize="hasAnyRole('YUK_USER,YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-account"></i> <span> Kullanıcı Ayarları</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/kullanici/tablo"><i class="zmdi zmdi-accounts-list-alt"></i> Kullanıcı Listesi</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+<!--                    <li><a href="/kullanici/sonislemler"><i class="zmdi zmdi-accounts-list-alt"></i> Son Yapılan-->
+<!--                        İşlemler</a></li>&lt;!&ndash;   Menü sekme iconu Değiştirildi.&ndash;&gt;-->
+<!--                    <li><a href="/kullanici/takip"><i class="zmdi zmdi-accounts-list-alt"></i> Kullanıcı Takip</a></li>-->
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li>
+<!--            <li sec:authorize="hasAnyRole('YUK_USER,YUK_ALT,TARIFELI_USER, TARIFELI_ALT, TERMINAL_USER, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_ALT, ADMIN')">-->
+<!--                <a href="/uyelik/ayarlar"><i class="zmdi zmdi-account-box-mail"></i><span> Üyelik Ayarları</span></a>-->
+<!--                   Menü sekme iconu Değiştirildi.-->
+<!--            </li>-->
+            <li sec:authorize="hasAnyRole('YUK_USER,TARIFELI_USER,TARIFESIZ_USER,TERMINAL_USER,ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-border-color"></i> <span> Teknik Destek</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT ,TARIFESIZ_USER, TARIFESIZ_ALT,ADMIN')">
+                        <a href="/teknikdestek/olustur"><i class="zmdi zmdi-skip-next"></i> Teknik Destek Talebi</a>
+                    </li><!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_ALT,TERMINAL_USER, TERMINAL_ALT ,TARIFESIZ_USER, TARIFESIZ_ALT,ADMIN')">
+                        <a href="/teknikdestek/taleplerim"><i class="zmdi zmdi-view-headline"></i> Teknik Destek
+                            Taleplerim</a></li><!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li sec:authorize="hasAnyRole('YUK_USER,TARIFELI_USER,TARIFESIZ_USER,TERMINAL_USER,ADMIN')">
+                <a href="javaScript:void(0);" class="waves-effect">
+                    <i class="zmdi zmdi-layers"></i> <span> Öneri ve Şikayetleriniz</span>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <i class="fa fa-angle-left float-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/oneri/olustur"><i class="zmdi zmdi-skip-next"></i> Öneri – Talep Oluştur</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                    <li sec:authorize="hasAnyRole('YUK_USER, YUK_BILDIRIM, YUK_ALT,TARIFELI_USER, TARIFELI_BILDIRIM, TARIFELI_ALT, TERMINAL_USER, TERMINAL_BILDIRIM, TERMINAL_ALT, TARIFESIZ_USER, TARIFESIZ_BILDIRIM, TARIFESIZ_ALT, ADMIN')">
+                        <a href="/oneri/onerilerim"><i class="zmdi zmdi-view-headline"></i> Öneri – Taleplerim</a></li>
+                    <!--   Menü sekme iconu Değiştirildi.-->
+                </ul>
+            </li>
+            <li class="sidebar-header">U-ETDS SİSTEMİ</li>
+            <li><a href="/iletisim/iletisim" class="waves-effect"><i class="zmdi zmdi-share text-info"></i> <span>İletişim</span></a>
+            </li>
+        </ul>
+    </div>
+    <!--Start topbar header-->
+    <header class="topbar-nav">
+        <nav id="header-setting" class="navbar navbar-expand fixed-top">
+            <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link toggle-menu" href="javascript:void(0);">
+                        <i class="ti-menu menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                </li>
+                <h6> &nbsp; </h6>
+            </ul>
+            <ul class="navbar-nav align-items-center right-nav-link">
+                <li class="nav-item dropdown-lg">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                       href="javascript:void(0);">
+                        <i class="fa fa-money"></i><span class="badge badge-primary badge-up"></span></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Döviz Kurları
+                            </li>
+                            <li class="list-group-item">
+                                <a href="javaScript:void(0);">
+                                    <div class="media">
+                                        <div style="width:100%;display:flex;justify-content:center;text-align: -webkit-center; margin: 20px 0;">
+                                            <iframe title="Paratic Piyasalar"
+                                                    sandbox="allow-modals allow-same-origin allow-scripts allow-popups allow-pointer-lock"
+                                                    height="250" id="piyasa_paratic_list_extended"
+                                                    src="https://piyasa.paratic.com/MOBILE/widget/toolapi.php?toolName=listextended&background=mavi&ins=USD/TRL,EUR/TRL,GBP/TRL&options=0,3"
+                                                    frameborder="0"
+                                                    style="box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.75);border-radius:5px;width:232px; height:200px;"></iframe>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="javaScript:void(0);">
+                                    <div class="media">
+                                        <div style="width:100%;display:flex;justify-content:center;text-align: -webkit-center;margin: 20px 0;">
+                                            <iframe title="Paratic Piyasalar"
+                                                    sandbox="allow-modals allow-same-origin allow-scripts allow-popups allow-pointer-lock"
+                                                    height="250" id="piyasa_paratic_doviz_cevirici"
+                                                    src="https://piyasa.paratic.com/MOBILE/widget/toolapi.php?toolName=dovizcevirici&amp;background=mavi"
+                                                    frameborder="0"
+                                                    style="box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.75);border-radius:5px;width: 232px; height: 230px;"></iframe>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--                <li class="nav-item dropdown-lg">-->
+                <!--                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void(0);">-->
+                <!--                        <i class="fa fa-envelope-open-o"></i><span class="badge badge-primary badge-up"></span></a>-->
+                <!--                    <div class="dropdown-menu dropdown-menu-right">-->
+                <!--                        <ul class="list-group list-group-flush">-->
+                <!--                            <li class="list-group-item d-flex justify-content-between align-items-center">-->
+                <!--                                You have 12 new messages-->
+                <!--                                <span class="badge badge-primary">12</span>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110X110" alt="user avatar"></div>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">Jhon Deo</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>-->
+                <!--                                            <small>Today, 4:10 PM</small>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110X110" alt="user avatar"></div>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">Sara Jen</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>-->
+                <!--                                            <small>Yesterday, 8:30 AM</small>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110X110" alt="user avatar"></div>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">Dannish Josh</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>-->
+                <!--                                            <small>5/11/2018, 2:50 PM</small>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110X110" alt="user avatar"></div>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">Katrina Mccoy</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet.</p>-->
+                <!--                                            <small>1/11/2018, 2:50 PM</small>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item text-center"><a href="javaScript:void(0);">See All Messages</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item dropdown-lg">-->
+                <!--                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void(0);">-->
+                <!--                        <i class="fa fa-bell-o"></i><span class="badge badge-info badge-up"></span></a>-->
+                <!--                    <div class="dropdown-menu dropdown-menu-right">-->
+                <!--                        <ul class="list-group list-group-flush">-->
+                <!--                            <li class="list-group-item d-flex justify-content-between align-items-center">-->
+                <!--                                You have 14 Notifications-->
+                <!--                                <span class="badge badge-info">14</span>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <i class="zmdi zmdi-accounts fa-2x mr-3 text-info"></i>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">New Registered Users</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <i class="zmdi zmdi-coffee fa-2x mr-3 text-warning"></i>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">New Received Orders</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item">-->
+                <!--                                <a href="javaScript:void(0);">-->
+                <!--                                    <div class="media">-->
+                <!--                                        <i class="zmdi zmdi-notifications-active fa-2x mr-3 text-danger"></i>-->
+                <!--                                        <div class="media-body">-->
+                <!--                                            <h6 class="mt-0 msg-title">New Updates</h6>-->
+                <!--                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                            <li class="list-group-item text-center"><a href="javaScript:void(0);">See All Notifications</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <li class="nav-item language">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                       href="javascript:void(0);"><i class="fa fa-flag"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-de mr-2"></i> German</li>
+                    </ul>
+                </li>
+                <li class="nav-item col-xl">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                        <span class="user-profile"><img src="https://via.placeholder.com/110X110" class="img-circle"
+                                                        alt="user avatar"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item user-details">
+                            <a href="/kullanici/profili">
+                                <div class="media">
+                                    <div class="avatar"><img class="align-self-start mr-3"
+                                                             src="https://via.placeholder.com/110X110"
+                                                             alt="user avatar"></div>
+                                    <div class="media-body">
+                                        <h6 class="mt-2 user-title"><span sec:authentication="name"></span></h6>
+                                        <!--                                        <p class="user-subtitle"><span sec:authentication="email"></span></p>-->
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!--                        <li class="dropdown-divider"></li>-->
+                        <!--                        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>-->
+                        <!--                        <li class="dropdown-divider"></li>-->
+                        <!--                        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>-->
+                        <!--                        <li class="dropdown-divider"></li>-->
+                        <!--                        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>-->
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item">
+                            <!-- <i class="icon-power mr-2"></i> Logout   Orjinal -->
+                            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+                                <button sec:authorize="isAuthenticated()"
+                                        class="btn btn-outline-danger my-2 my-sm-0 btn-sm center" type="submit">Çıkış
+                                    Yap
+                                </button>
+                                <button sec:authorize="isAnonymous()" th:href="@{~/login}"
+                                        class="btn btn-outline-info my-2 my-sm-0 btn-sm center" type="submit">Giriş
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!--start overlay-->
+    <div class="overlay toggle-menu"></div>
+    <!--end overlay-->
+</div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+</body>
+</html>

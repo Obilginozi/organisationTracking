@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>U-ETDS - Toplu Personel Ekle</title>
+
+    <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
+    <script th:src="@{/js/pace.min.js}"></script>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style_edit.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <!--Bootstrap Datepicker-->
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+    <!-- Dropzone css -->
+    <link th:href="@{/plugins/dropzone/css/dropzone.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- Start wrapper-->
+<div id="wrapper">
+
+
+    <div id="loading-screen" style="display: none; background-color: white">
+        <div class='loader'>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--text'></div>
+        </div>
+    </div>
+
+    <!--Start sidebar-topbar-wrapper-->
+    <div th:replace="SideBar :: navbar"/>
+    <!--End sidebar-topbar-wrapper-->
+
+    <div class="clearfix"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumb-->
+            <div class="row pt-2 pb-2">
+                <div class="col-sm-9">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javaScript:void(0);">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item"><a href="javaScript:void(0);">Personel Yönetimi</a></li>
+                    </ol>
+                </div>
+                <div class="col-sm-3">
+                    <div class="btn-group float-sm-right m-1" role="group">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Hızlı Erişim
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item"
+                               style="font-size: small; background-color: rgba(129, 90, 232, 0.15);">Teknik Destek</a>
+                            <a href="/teknikdestek/olustur" class="dropdown-item text-center" style="font-size: small">Teknik
+                                Destek Talebi</a>
+                            <a href="/teknikdestek/taleplerim" class="dropdown-item text-right"
+                               style="font-size: small">&emsp;&emsp;Teknik Destek Taleplerim</a>
+                            <a class="dropdown-item "
+                               style="font-size: small; background-color: rgba(129, 90, 232, 0.15);">Öneri /
+                                Şikayetleriniz</a>
+                            <a href="/oneri/olustur" class="dropdown-item text-center" style="font-size: small">Öneri /
+                                Şikayet Talebi</a>
+                            <a href="/oneri/onerilerim" class="dropdown-item pull-right" style="font-size: small">&emsp;&emsp;Öneri
+                                / Şikayet Taleplerim</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/iletisim/iletisim" class="dropdown-item">İletişim</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header gradient-deepblue text-white  text-uppercase">Toplu Personel Ekleme</div>
+                    <div class="ribbon-content"></div>
+                    <div class="card-body">
+                        <!-- Form Başlangıç-->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="col-lg-5" data-toggle="tooltip" data-placement="bottom"
+                                         title="Şablonda gösterildiği şekilde verilerini doldurunuz...">
+                                        <img th:src="@{/images/excel.png}" alt="logo icon">
+                                        <a th:href="@{/PersonelTaslak.xlsx}" style="font-size: 20px" download>&emsp;
+                                            Şablon Excel İçin Buraya Tıklayınız...</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="dropzone" id="dropzone">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple="multiple">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 pull-right">
+                                <div class="btn-group pull-right">
+                                    <a href="/anasayfa/dash/" class="btn btn-danger "><i
+                                            class="zmdi zmdi-block-alt"></i>
+                                        İptal
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay toggle-menu"></div>
+        </div><!-- End container-fluid-->
+    </div><!--End content-wrapper-->
+</div><!--End wrapper-->
+<a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+
+<!--Start footer wrapper-->
+<div th:replace="Footer :: footer"/>
+<!--End footer-wrapper-->
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+<!--Form Validatin Script-->
+<script th:src="@{/plugins/jquery-validation/js/jquery.validate.min.js}"></script>
+
+<!-- Dropzone JS  -->
+<script th:src="@{/plugins/dropzone/js/dropzone.js}"></script>
+<script th:src="@{/plugins/summernote/dist/summernote-bs4.min.js}"></script>
+<script>
+    $('#summernoteEditor').summernote({
+        height: 400,
+        tabsize: 2
+    });
+    $(document).ready(function () {
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#dropzone", {
+            url: "/personel/import-excel",
+
+            success: function (response) {
+                console.log('success');
+                var sayisi = JSON.parse(response.xhr.response);
+                console.log(sayisi);
+                console.log(sayisi.length);
+                for (var i = 0; i < sayisi.length; i++) {
+                    if (sayisi[i].result) {
+                        console.log("if: " + i);
+                        success_noti_custom(sayisi[i].message);
+
+                    } else {
+                        console.log("else: " + i);
+                        error_noti_basvuru(sayisi[i].message);
+                    }
+                }
+                setTimeout(function () {
+                    window.location.replace("/personel/personeller");
+                }, 2000)
+            },
+            error: function (response) {
+                console.log('error');
+            },
+        });
+    });
+</script>
+</body>
+</html>

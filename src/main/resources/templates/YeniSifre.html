@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en
+" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-2,  shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>U-ETDS - Şifremi Unuttum</title>
+
+    <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
+    <script th:src="@{/js/pace.min.js}"></script>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <!--Bootstrap Datepicker-->
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+    <!-- Dropzone css -->
+    <link th:href="@{/plugins/dropzone/css/dropzone.css}" rel="stylesheet" type="text/css">
+
+    <style>
+        .pass_show{position: relative}
+
+        .pass_show .ptxt {
+
+            position: absolute;
+
+            top: 50%;
+
+            right: 10px;
+
+            z-index: 1;
+
+            color: #7934f3;
+
+            margin-top: -10px;
+
+            cursor: pointer;
+
+            transition: .3s ease all;
+
+        }
+
+        .pass_show .ptxt:hover{color: #333333;}
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- Start wrapper-->
+<div id="wrapper">
+    <form id="ForgetPass">
+        <div class="height-100v d-flex align-items-center justify-content-center">
+            <div class="card-authentication2">
+                <div class="card-group">
+                    <div class="card mb-0">
+                        <div class="bg-reset-password2"></div>
+                        <div class="card-img-overlay rounded-left my-5">
+                        </div>
+                    </div>
+
+                    <div class="card mb-0 ">
+                        <div class="card-body">
+                            <div class="card-content p-3">
+                                <div class="text-center js-tilt" data-tilt>
+                                    <img th:src="@{/images/logo-icon.png}" alt="IMG">
+                                </div><br>
+                                <div class="card-title text-uppercase text-center pb-3">Şİfremİ Unuttum</div>
+                                <p id="baslık" class="text-center pb-2">Şifrenizi Yetkili Dahil Kimse ile Paylaşmayınız.</p>
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+
+                                            <label>Yeni Şifrenizi Giriniz</label>
+                                            <div class="form-group pass_show">
+                                                <input onfocus="this.value=''" type="password" value="00000000" class="form-control" placeholder="Yeni Şifre">
+                                            </div>
+                                            <label>Yeni Şifrenizi Tekrar Giriniz</label>
+                                            <div class="form-group pass_show">
+                                                <input onfocus="this.value=''" type="password" value="00000000" class="form-control" placeholder="Yeni Şifre">
+                                            </div>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block mt-3">
+                                        Gönder
+                                    </button>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <p class="text-dark mb-0"><a href="/login"> Giriş
+                                Sayfasına Geri Dön</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-0 ">
+                        <div class="card-body">
+                            <p class="text-center">U-ETDS, Ulaştırma Bakanlığı Onaylı "Ulaştırma Elektronik
+                                Takip ve Denetim Sistemi" Uygulaması Yazılımıdır. Kullanıcı dostu, kolaylaştırılmış
+                                arayüzlü uygulamamız ve nitelikli devam desteği ile hizmet etmekteyiz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+            <!--Start Back To Top Button-->
+            <a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+            <!--End Back To Top Button-->
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+<script th:src="@{/js/jquery-serialize.min.js}"></script>
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+
+<!--&lt;!&ndash;Form Validatin Script&ndash;&gt;-->
+<!--<script th:src="@{/plugins/jquery-validation/js/jquery.validate.min.js}"></script>-->
+
+<script>
+
+    $(document).ready(function(){
+        $('.pass_show').append('<span class="ptxt">Göster</span>');
+    });
+
+
+    $(document).on('click','.pass_show .ptxt', function(){
+
+        $(this).text($(this).text() == "Göster" ? "Gizle" : "Göster");
+
+        $(this).prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
+
+    });
+
+</script>
+
+<script th:src="@{/js/tilt.jquery.min.js}"></script>
+<script >
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+
+</body>
+</html>
+
+
+
+

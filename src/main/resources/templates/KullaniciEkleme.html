@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en
+" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>U-ETDS | Kullanıcı Ekleme</title>
+
+    <!-- loader-->
+    <link th:href="@{/css/pace.min.css}" rel="stylesheet"/>
+    <script th:src="@{/js/pace.min.js}"></script>
+
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <!-- jquery steps CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/jquery.steps/css/jquery.steps.css}">
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style_edit.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+    <!--Bootstrap Datepicker-->
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" type="text/css">
+
+
+</head>
+
+
+<body>
+
+<!-- Start wrapper-->
+<div id="wrapper">
+
+    <!--Start sidebar-topbar-wrapper-->
+    <div th:replace="SideBar :: navbar"/>
+    <!--End sidebar-topbar-wrapper-->
+
+    <div id="loading-screen" style="display: none; background-color: white">
+        <div class='loader'>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--text'></div>
+        </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumb-->
+            <div class="row pt-2 pb-2">
+                <div class="col-sm-9">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javaScript:void(0);">Ayarlar</a></li>
+                        <li class="breadcrumb-item"><a href="javaScript:void(0);">Kullanıcı Ayarları </a></li>
+                    </ol>
+                </div>
+                <div class="col-sm-3">
+                    <div class="btn-group float-sm-right m-1" role="group">
+                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Hızlı Erişim
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item"
+                               style="font-size: small; background-color: rgba(129, 90, 232, 0.15);">Teknik Destek</a>
+                            <a href="/teknikdestek/olustur" class="dropdown-item text-center" style="font-size: small">Teknik
+                                Destek Talebi</a>
+                            <a href="/teknikdestek/taleplerim" class="dropdown-item text-right"
+                               style="font-size: small">&emsp;&emsp;Teknik Destek Taleplerim</a>
+                            <a class="dropdown-item "
+                               style="font-size: small; background-color: rgba(129, 90, 232, 0.15);">Öneri /
+                                Şikayetleriniz</a>
+                            <a href="/oneri/olustur" class="dropdown-item text-center" style="font-size: small">Öneri /
+                                Şikayet Talebi</a>
+                            <a href="/oneri/onerilerim" class="dropdown-item pull-right" style="font-size: small">&emsp;&emsp;Öneri
+                                / Şikayet Taleplerim</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/iletisim/iletisim" class="dropdown-item">İletişim</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Breadcrumb-->
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header gradient-deepblue text-white  text-uppercase">Kullanıcı Ekleme</div>
+                    <div class="ribbon-content"></div>
+                    <div class="card-body">
+                        <!-- Form Başlangıç-->
+                        <form id="FormSave">
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="adi" class="">Ad  <span style="color: red">(*)</span></label>
+                                            <input th:if="${kullanici != null}" type="text"
+                                                   class="form-control form-control-sm"
+                                                   id="adi" name="adi" th:value="${kullanici.ad}"
+                                                   placeholder="Ad Giriniz" required>
+
+                                            <input th:if="${kullanici == null}" type="text"
+                                                   class="form-control form-control-sm" id="adi"
+                                                   name="adi" placeholder="Ad Giriniz" required/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="soyad" class="">Soyad  <span style="color: red">(*)</span></label>
+                                            <input th:if="${kullanici != null}" type="text"
+                                                   class="form-control form-control-sm"
+                                                   id="soyad" name="soyad" th:value="${kullanici.soyad}"
+                                                   placeholder="Soyad Giriniz" required>
+
+                                            <input th:if="${kullanici == null}" type="text"
+                                                   class="form-control form-control-sm" id="soyad"
+                                                   name="soyad" placeholder="Soyad Giriniz" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="kulrol" class="">Kullanıcı Rolü <span style="color: red">(*)</span></label>
+                                            <select class="form-control form-control-sm" name="kulrol"
+                                                    th:if="${kullanici != null}" id="kulrol" required>
+                                                <option disabled="disabled" selected="selected">----- Rol
+                                                    Seçiniz -----
+                                                </option>
+                                                <option th:each="roles : ${kullanicirole}" th:value="${roles.id}"
+                                                        th:text="${roles.role}"
+                                                        th:selected="${roles.id} == ${kullanici.roles}"></option>
+                                            </select>
+                                            <select class="form-control form-control-sm" name="kulrol"
+                                                    th:if="${kullanici == null}" id="kulrol" required>
+                                                <option disabled="disabled" selected="selected">----- Rol
+                                                    Seçiniz -----
+                                                </option>
+                                                <option th:each="roles : ${kullanicirole}" th:value="${roles.id}"
+                                                        th:text="${roles.role}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="firun" class="">Firmadaki Unvanı <span style="color: red">(*)</span></label>
+                                            <input th:if="${kullanici != null}"
+                                                   th:value="${kullanici.companyInRole}"
+                                                   class="form-control form-control-sm" id="firun"
+                                                   name="firun" placeholder="Firmadaki Unvanı Giriniz" required>
+                                            <input th:if="${kullanici == null}"
+                                                   class="form-control form-control-sm" id="firun"
+                                                   name="firun" placeholder="Firmadaki Unvanı Giriniz" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="mail" class="">E-posta <abbr
+                                                    title="E-Mail Adresiniz Kullanıcı Adı Yerine Geçmektedir.">(Kullanıcı
+                                                Adı)</abbr><span style="color: red"> (*)</span></label>
+                                            <input th:if="${kullanici != null}" type="email" maxlength="60"
+                                                   class="form-control form-control-sm" id="mail"
+                                                   name="mail" th:value="${kullanici.email}"
+                                                   placeholder="E-posta Giriniz" required>
+                                            <input th:if="${kullanici == null}" type="email" maxlength="60"
+                                                   class="form-control form-control-sm" id="mail"
+                                                   name="mail"
+                                                   placeholder="E-posta Giriniz" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="telno" class="">Telefon Numarası <span style="color: red">(*)</span></label>
+                                            <input th:if="${kullanici != null}"
+                                                   th:value="${kullanici.telefon}"
+                                                   class="form-control form-control-sm"
+                                                   id="telno" maxlength="10" name="telno"
+                                                   placeholder="Telefon Numarası Giriniz" required>
+                                            <input th:if="${kullanici == null}"
+                                                   class="form-control form-control-sm" id="telno"
+                                                   maxlength="10" name="telno"
+                                                   placeholder="Telefon Numarası Giriniz" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div th:if="${kullanici != null}">
+                                    <br>
+                                    <br>
+                                    <div class="card-header text-center "><h5>U-ETDS ALT KULLANICI ŞİFRE
+                                        DEĞİŞİKLİĞİ</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="pass" class="">Eski Şifre <span style="color: red">(*)</span></label>
+                                                        <input type="password"
+                                                               class="form-control form-control-sm" id="oldPass"
+                                                               name="pass" maxlength="25" placeholder="Şifre Giriniz"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="pass" class="">Yeni Şifre <span style="color: red">(*)</span></label>
+                                                        <input type="password"
+                                                               class="form-control form-control-sm" id="pass"
+                                                               name="pass" maxlength="25" placeholder="Şifre Giriniz"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="pass2" class="">Yeni Şifre Tekrar <span style="color: red">(*)</span></label>
+                                                        <input type="password"
+                                                               class="form-control form-control-sm" id="pass2"
+                                                               name="pass2" maxlength="25" placeholder="Şifre Giriniz"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div th:if="${kullanici == null}">
+                                    <hr class="rounded">
+                                    <div class="card-header text-center "><h5>U-ETDS ALT KULLANICI ŞİFRE BELİRLEME</h5>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="pass" class="">Şifre <span style="color: red">(*)</span></label>
+                                                    <input type="password"
+                                                           class="form-control form-control-sm" id="pass"
+                                                           name="pass" maxlength="25" placeholder="Şifre Giriniz"
+                                                           required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="pass2" class="">Şifre Tekrar <span style="color: red">(*)</span></label>
+                                                    <input type="password"
+                                                           class="form-control form-control-sm" id="pass2"
+                                                           name="pass2" maxlength="25" placeholder="Şifre Giriniz"
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group" th:if="${kullanici == null}">
+                                            <div class="icheck-material-success icheck-inline">
+                                                <input type="radio" id="inline-radio-success" name="durum"
+                                                       checked value=1>
+                                                <label for="inline-radio-success">Aktif</label>
+                                            </div>
+                                            <div class="icheck-material-primary icheck-inline">
+                                                <input type="radio" id="inline-radio-primary" name="durum"
+                                                       value=2>
+                                                <label for="inline-radio-primary">Pasif</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" th:if="${kullanici != null}">
+                                            <div class="icheck-material-success icheck-inline">
+                                                <input type="radio" th:checked="${kullanici.active == 1}"
+                                                       id="inline-radio-success" name="durum" checked value=1>
+                                                <label for="inline-radio-success">Aktif</label>
+                                            </div>
+                                            <div class="icheck-material-primary icheck-inline">
+                                                <input type="radio" th:checked="${kullanici.active == 2}"
+                                                       id="inline-radio-primary" name="durum" value=0>
+                                                <label for="inline-radio-primary">Pasif</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 pull-right">
+                                    <div class="btn-group" th:if="${kullanici == null}">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-success"><i
+                                                    class="fa fa-check-square-o"></i>
+                                                Kaydet
+                                            </button>
+                                            <label>&emsp; &nbsp;&nbsp;&nbsp;</label>
+                                            <a href="/kullanici/tablo/" class="btn btn-danger"><i
+                                                    class="zmdi zmdi-block-alt"></i>
+                                                İptal
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" th:if="${kullanici != null}">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-success"><i
+                                                    class="fa fa-check-square-o"></i>
+                                                Güncelle
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row-->
+<!--Start footer wrapper-->
+<div th:replace="Footer :: footer"/>
+<!--End footer-wrapper-->
+
+<div class="overlay toggle-menu"></div>
+
+<!--Start Back To Top Button-->
+<a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+
+<!--Form Validatin Script-->
+<script th:src="@{/plugins/jquery-validation/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/jquery-serialize.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $("#telno").keyup(function (e) {
+            var regex = /^[0-9]*$/;
+            if (regex.test(this.value) !== true) {
+                this.value = this.value.replace(/[^0-9]+/, '')
+                date_msg("Dikkat!", "Telefon Numarası Alanına Numerik Karakter Giriniz")
+            }
+        }),
+        $("#soyad").keyup(function (e) {
+        var regex = /^[a-zA-Z ğüşıöçĞÜŞİÖÇ]*$/;
+        if (regex.test(this.value) !== true) {
+            this.value = this.value.replace(/[^a-zA-Z ğüşıöçĞÜŞİÖÇ]+/, '')
+            date_msg("Dikkat!", "Soyad Alanına Alfabetik Karakter Giriniz")
+        }
+
+    }),
+            $("#adi").keyup(function (e) {
+                var regex = /^[a-zA-Z ğüşıöçĞÜŞİÖÇ]*$/;
+                if (regex.test(this.value) !== true) {
+                    this.value = this.value.replace(/[^a-zA-Z ğüşıöçĞÜŞİÖÇ]+/, '')
+                    date_msg("Dikkat!", "Ad Alanına Alfabetik Karakter Giriniz")
+                }
+
+            })
+
+    });
+</script>
+<script>
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
+    $("#FormSave").validate({
+        submitHandler: function (FormSave) {
+            var id = getUrlParameter('id');
+            $('#loading-screen').fadeIn();
+            console.log(id);
+            if ($("#pass").val() === $("#pass2").val()) {
+                if (id == null) {
+                    var postData = {
+                        "id": "0",
+                        "ad": $("#adi").val(),
+                        "soyad": $("#soyad").val(),
+                        "companyInRole": $("#firun").val(),
+                        "roles": $("#kulrol").val(),
+                        "email": $("#mail").val(),
+                        "telefon": $("#telno").val(),
+                        "oldPassword": "",
+                        "password": $("#pass").val(),
+                        "active": $('input[name="durum"]:checked').val(),
+                    }
+                } else {
+                    var postData = {
+                        "id": id,
+                        "ad": $("#adi").val(),
+                        "soyad": $("#soyad").val(),
+                        "companyInRole": $("#firun").val(),
+                        "roles": $("#kulrol").val(),
+                        "email": $("#mail").val(),
+                        "telefon": $("#telno").val(),
+                        "oldPassword": $("#oldPass").val(),
+                        "password": $("#pass").val(),
+                        "active": $('input[name="durum"]:checked').val(),
+                    }
+                }
+                ;
+
+                console.log(postData)
+                $.ajax({
+                    url: "/kullanici/olustur",
+                    type: "POST",
+                    data: JSON.stringify(postData),
+                    contentType: "application/json",
+                    datatype: 'json',
+                    cache: false,
+                    timeout: 600000,
+
+                    success: function (response) {
+                        $('#loading-screen').fadeOut('slow');
+                        if (response.result) {
+                            success_noti();
+                            setTimeout(function () {
+                                window.location.replace("/kullanici/tablo");
+                            }, 1000);
+                        } else {
+                            error_noti_yuk(response.message);
+                            console.log(response.message);
+                        }
+                    },
+                });
+            } else {
+                error_noti_yuk("Şifreler Uyuşmuyor. Lütfen Kontrol Ediniz.");
+            }
+        }
+    })
+</script>
+</body>
+</html>
