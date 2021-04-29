@@ -34,7 +34,7 @@ public class User {
     private String phone;
     private String roles = "";
     private String permissions = "";
-    @Column(nullable = true)
+    @Column
     private String iban ;
     @OneToOne
     protected Country country;
@@ -51,6 +51,12 @@ public class User {
         this.surname = surname;
         this.email = email;
         this.roles = roles;
+        Country country = new Country();
+        country.setId(1);
+        this.country = country;
+        District district = new District();
+        district.setId(1);
+        this.district = district;
     }
 
     public List<String> getRoleList(){

@@ -1,16 +1,17 @@
 package com.duzceuniversity.kurumtakip.DataBase.Repository;
 
 import com.duzceuniversity.kurumtakip.DataBase.Model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findAll();
 
     User findById(int id);
-    User findByUsernameAndDeleteAtIsNull(String username);
 
-    void saveAll(List<User> users);
+    User findByUsernameAndDeleteAtIsNull(String username);
 }

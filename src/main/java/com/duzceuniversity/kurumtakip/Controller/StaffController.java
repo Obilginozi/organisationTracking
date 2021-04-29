@@ -68,11 +68,11 @@ public class StaffController {
         ResponseItem responseItem = new ResponseItem();
         try {
             if (staffDto.getTcPass() != null) {
-                if (staffRepository.findByTcKimlikPasaportNo(staffDto.getTcPass()) == null && staffDto.getId() == 0) {
+                if (staffRepository.findByTcPass(staffDto.getTcPass()) == null && staffDto.getId() == 0) {
                     responseItem = staffService.save(staffDto);
                 } else if (staffDto.getId() != 0) {
                     Staff staff = staffRepository.findById(staffDto.getId());
-                    if (staff != staffRepository.findByTcKimlikPasaportNo(staffDto.getTcPass())) {
+                    if (staff != staffRepository.findByTcPass(staffDto.getTcPass())) {
                         //responseItem = staffService.save(staffDto);
                         if (staffRepository.findByTcKimlikPasaportAndStatus(staffDto.getTcPass()) == null) {
                             responseItem = staffService.save(staffDto);

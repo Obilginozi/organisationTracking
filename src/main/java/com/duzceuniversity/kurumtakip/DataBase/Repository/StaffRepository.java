@@ -22,7 +22,7 @@ public interface StaffRepository extends PagingAndSortingRepository<Staff, Integ
     @Query("update Staff p set p.status =0 WHERE p.id=:id")
     void deleteById(@Param("id") int id);
 
-    Staff findByTcKimlikPasaportNo(String tc);
+    Staff findByTcPass(String tc);
 
     List<Staff> findAll();
 
