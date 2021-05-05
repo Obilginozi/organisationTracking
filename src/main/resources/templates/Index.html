@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title> Ana Sayfa</title>
+    <!-- loader-->
+    <link th:href="@{/css/pace.min.css}" rel="stylesheet"/>
+    <!--favicon-->
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <!-- Vector CSS -->
+    <link th:href="@{/plugins/vectormap/jquery-jvectormap-2.0.2.css}" rel="stylesheet"/>
+    <!-- simplebar CSS-->
+    <link th:href="@{/plugins/simplebar/css/simplebar.css}" rel="stylesheet"/>
+    <!-- Apex chart CSS-->
+    <link th:href="@{/plugins/apexcharts/apexcharts.css}" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" th:href="@{/plugins/notifications/css/lobibox.min.css}"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link th:href="@{/css/icons.css}" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link th:href="@{/css/sidebar-menu.css}" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link th:href="@{/css/app-style.css}" rel="stylesheet"/>
+    <!-- skins CSS-->
+    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
+    <link th:href="@{~/fontawesome/css/all.css}" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+    <div th:replace="SideBar :: navbar"/>
+    <div class="clearfix"></div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+<!--            <div class="row mt-3">-->
+<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
+<!--                    <div class="card gradient-worldcup bubble rounded-0">-->
+<!--                        <div class="card-body card-block p-3">-->
+<!--                            <div class="media align-items-center">-->
+<!--                                <div class="media-body text-left">-->
+<!--                                    <p class="text-white mb-0">Günlük Sefer</p>-->
+<!--                                    <h5 class="text-white mb-0" id="chart01"></h5>-->
+<!--                                </div>-->
+<!--                                <div class="w-icon"><i class="zmdi zmdi-truck text-white"></i></div>-->
+<!--                            </div>-->
+<!--                            <div id="chart1" class="mt-1"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
+<!--                    <div class="card gradient-rainbow bubble rounded-0">-->
+<!--                        <div class="card-body card-block p-3">-->
+<!--                            <div class="media align-items-center">-->
+<!--                                <div class="media-body text-left">-->
+<!--                                    <p class="text-white mb-0">Çalışan Personel</p>-->
+<!--                                    <h5 class="text-white mb-0" id="chart02"></h5>-->
+<!--                                </div>-->
+<!--                                <div class="w-icon"><i class="zmdi zmdi-accounts-alt text-white"></i></div>-->
+<!--                            </div>-->
+<!--                            <div id="chart2" class="mt-1"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
+<!--                    <div class="card gradient-smile bubble rounded-0">-->
+<!--                        <div class="card-body card-block p-3">-->
+<!--                            <div class="media align-items-center">-->
+<!--                                <div class="media-body text-left">-->
+<!--                                    <p class="text-white mb-0" style="font-size: small">Günlük Öz Sermayeli Sefer</p>-->
+<!--                                    <h5 class="text-white mb-0" id="chart03"></h5>-->
+<!--                                </div>-->
+<!--                                <div class="w-icon"><i class="zmdi zmdi-balance-wallet text-white"></i></div>-->
+<!--                            </div>-->
+<!--                            <div id="chart3" class="mt-1"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
+<!--                    <div class="card gradient-pinki bubble rounded-0">-->
+<!--                        <div class="card-body card-block p-3">-->
+<!--                            <div class="media align-items-center">-->
+<!--                                <div class="media-body text-left">-->
+<!--                                    <p class="text-white mb-0">Günlük Sözleşmeli Sefer</p>-->
+<!--                                    <h5 class="text-white mb-0" id="chart04"></h5>-->
+<!--                                </div>-->
+<!--                                <div class="w-icon"><i class="zmdi zmdi-chart-donut text-white"></i></div>-->
+<!--                            </div>-->
+<!--                            <div id="chart4" class="mt-1"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>&lt;!&ndash;end row&ndash;&gt;-->
+<!--            <div class="row">-->
+<!--                <div class="col-12 col-lg-8 col-xl-8">-->
+<!--                    <div class="card rounded-0">-->
+<!--                        <div class="card-header text-uppercase">Aylık Gelir &amp; Gider</div>-->
+<!--                        <div class="card-body pb-0">-->
+<!--                            <div class="">-->
+<!--                                <div id="chart5"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 col-lg-4 col-xl-4">-->
+<!--                    <div class="card rounded-0">-->
+<!--                        <div class="card-header text-uppercase">Aylık Sefer</div>-->
+<!--                        <div class="card-body pb-0">-->
+<!--                            <div class="">-->
+<!--                                <div id="chart6"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>&lt;!&ndash;end row&ndash;&gt;-->
+<!--            <div class="card-deck flex-column flex-lg-row">-->
+<!--                <div class="card rounded-0">-->
+<!--                    <div class="card-header text-uppercase">Araç Trafiği</div>-->
+<!--                    <div class="card-body">-->
+<!--                        <div id="aracSayacChart">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rounded-0">-->
+<!--                    <div class="card-header text-uppercase">Çalışan Personeller</div>-->
+<!--                    <div class="card-body">-->
+<!--                        <table id="personelList" class="table" style="font-size: large">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card rounded-0">-->
+<!--                    <div class="card-header text-uppercase border-0 text-center sr-only">Sefer</div>-->
+<!--                    <div class="card-body">-->
+<!--                        <ul class="nav nav-pills nav-pills-custom nav-justified" role="tablist">-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" data-toggle="pill" href="#piil-13"><span class="">Aylık</span></a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link active" data-toggle="pill" href="#piil-14"><span-->
+<!--                                        class="">Haftalık</span></a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link" data-toggle="pill" href="#piil-15"><span class="">Günlük</span></a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Tab panes &ndash;&gt;-->
+<!--                    <div class="tab-content pt-0">-->
+<!--                        <div id="piil-13" class="tab-pane fade">-->
+<!--                            <div class="chart-container-10 d-flex align-items-center justify-content-center">-->
+<!--                                <div id="chart7"></div>-->
+<!--                            </div>-->
+<!--                            <hr>-->
+<!--                            <h4 class="text-center mb-0"></h4>-->
+<!--                            <p class="text-center extra-small-font mb-3"></p>-->
+<!--                        </div>-->
+
+<!--                        <div id="piil-14" class="tab-pane active">-->
+<!--                            <div class="chart-container-10 d-flex align-items-center justify-content-center">-->
+<!--                                <div id="chart8"></div>-->
+<!--                            </div>-->
+<!--                            <hr>-->
+<!--                            <h4 class="text-center mb-0"></h4>-->
+<!--                            <p class="text-center extra-small-font mb-3"></p>-->
+<!--                        </div>-->
+
+<!--                        <div id="piil-15" class="tab-pane fade">-->
+<!--                            <div class="chart-container-10 d-flex align-items-center justify-content-center">-->
+<!--                                <div id="chart9"></div>-->
+<!--                            </div>-->
+<!--                            <hr>-->
+<!--                            <h4 class="text-center mb-0"></h4>-->
+<!--                            <p class="text-center extra-small-font mb-3"></p>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row" sec:authorize="hasAnyRole('ADMIN')">
+                <div class="col-12 col-lg-12 col-xl-12">
+                    <div class="card rounded-0">
+                        <div class="card-header text-uppercase">Personel Hareketleri</div>
+                        <div class="">
+                            <div class="table-responsive">
+                                <table class="table align-items-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Adı</th>
+                                        <th>Soyadı</th>
+                                        <th>Ünvanı</th>
+                                        <th>Departman</th>
+                                        <th>Kimlik No.</th>
+                                        <th>Durum</th>
+                                        <th>DETAYLAR</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="media align-items-center">
+                                                <div class="product-div mr-2 d-flex align-items-between">
+                                                    <img src="/images/gallery/avatar.png" alt="product img">
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="mb-0">Ali</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Şenkul</td>
+                                        <td>Şoför</td>
+                                        <td>Fen İşleri</td>
+                                        <td>12345678910</td>
+                                        <td><span class="text-success">Müsait</span></td>
+<!--                                        <td>-->
+<!--                                            <div class="progress" style="height: 4px;">-->
+<!--                                                <div class="progress-bar gradient-lovekiss" role="progressbar"-->
+<!--                                                     style="width: 30%"></div>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media align-items-center">
+                                                <div class="product-div mr-2 d-flex align-items-between">
+                                                    <img src="/images/gallery/avatar.png" alt="product img">
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="mb-0">Veli</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Ertürk</td>
+                                        <td></td>
+                                        <td>Kanalizasyon</td>
+                                        <td>12345678910</td>
+                                        <td><span class="text-success">Görevlendirildi</span></td>
+<!--                                        <td>-->
+<!--                                            <div class="progress" style="height: 4px;">-->
+<!--                                                <div class="progress-bar gradient-ohhappiness" role="progressbar"-->
+<!--                                                     style="width: 100%"></div>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media align-items-center">
+                                                <div class="product-div mr-2 d-flex align-items-between">
+                                                    <img src="/images/gallery/avatar.png" alt="product img">
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="mb-0">Hasan</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Er</td>
+                                        <td>Operatör</td>
+                                        <td>Kara Yolları</td>
+                                        <td>12345678910</td>
+                                        <td><span class="text-danger">İzinli</span></td>
+<!--                                        <td>-->
+<!--                                            <div class="progress" style="height: 4px;">-->
+<!--                                                <div class="progress-bar gradient-deepblue" role="progressbar"-->
+<!--                                                     style="width: 75%"></div>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media align-items-center">
+                                                <div class="product-div mr-2 d-flex align-items-between">
+                                                    <img src="/images/gallery/avatar.png" alt="product img">
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="mb-0">Hüseyin</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Asa</td>
+                                        <td>Operatör</td>
+                                        <td>Temizlik İşleri</td>
+                                        <td>12345678910</td>
+                                        <td><span class="text-success">Görevlendirildi</span></td>
+<!--                                        <td>-->
+<!--                                            <div class="progress" style="height: 4px;">-->
+<!--                                                <div class="progress-bar gradient-ohhappiness" role="progressbar"-->
+<!--                                                     style="width: 100%"></div>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="media align-items-center">
+                                                <div class="product-div mr-2 d-flex align-items-between">
+                                                    <img src="/images/gallery/avatar.png" alt="product img">
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="mb-0">Mehmet</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Kul</td>
+                                        <td>Memur</td>
+                                        <td>Mali Hizmetler</td>
+                                        <td>12345678910</td>
+                                        <td><span class="text-danger">Raporlu</span></td>
+<!--                                        <td>-->
+<!--                                            <div class="progress" style="height: 4px;">-->
+<!--                                                <div class="progress-bar gradient-lovekiss" role="progressbar"-->
+<!--                                                     style="width: 60%"></div>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" sec:authorize="hasAnyRole('ADMIN')">
+                <div class="col-12 col-lg-12 col-xl-6">
+                    <div class="card rounded-0">
+                        <div class="card-content">
+                            <div class="row row-group m-0">
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="card-body text-center px-0">
+                                        <div id="chart11"></div>
+                                        <p class="mb-0">Toplam Personel</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="card-body text-center px-0">
+                                        <div id="chart12"></div>
+                                        <p class="mb-0">Günlük Personel</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="card-body text-center px-0">
+                                        <div id="chart13"></div>
+                                        <p class="mb-0">Aylık Personel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12 col-xl-6">
+                    <div class="card rounded-0">
+                        <div class="card-content">
+                            <div class="row row-group m-0">
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="card-body text-center px-0">
+                                        <div id="chart14"></div>
+                                        <p class="mb-0">İzinli</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="card-body text-center px-0">
+                                        <div id="chart15"></div>
+                                        <p class="mb-0">Raporlu</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="card-body text-center px-0">
+                                        <div id="chart16"></div>
+                                        <p class="mb-0">Toplam</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-12 col-lg-4 col-xl-4">-->
+<!--                    <div class="card">-->
+<!--                        <div class="card-header text-uppercase">U-ETDS Sistemi</div>-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="chart-container d-flex align-items-center justify-content-center">-->
+<!--                                <div id="application-by-source"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="overlay toggle-menu"></div>
+        </div>
+
+    </div><!--End content-wrapper-->
+    <a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+</div>
+<div th:replace="Footer :: footer"/>
+<div class="right-sidebar">
+    <div class="switcher-icon">
+        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+        <p class="mb-0">Header Colors</p>
+        <hr>
+        <div class="mb-3">
+            <button type="button" id="default-header" class="btn btn-outline-primary">Default Header</button>
+        </div>
+        <ul class="switcher">
+            <li id="header1"></li>
+            <li id="header2"></li>
+            <li id="header3"></li>
+            <li id="header4"></li>
+            <li id="header5"></li>
+            <li id="header6"></li>
+        </ul>
+        <p class="mb-0">Sidebar Colors</p>
+        <hr>
+        <div class="mb-3">
+            <button type="button" id="default-sidebar" class="btn btn-outline-primary">Default Sidebar</button>
+        </div>
+        <ul class="switcher">
+            <li id="theme1"></li>
+            <li id="theme2"></li>
+            <li id="theme3"></li>
+            <li id="theme4"></li>
+            <li id="theme5"></li>
+            <li id="theme6"></li>
+        </ul>
+    </div>
+</div>
+</div><!--End wrapper-->
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/js/pace.min.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/lobibox.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notifications.min.js}"></script>
+<script th:src="@{/plugins/notifications/js/notification-custom-script.js}"></script>
+<!-- simplebar js -->
+<script th:src="@{/plugins/simplebar/js/simplebar.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/js/sidebar-menu.js}"></script>
+<!-- Custom scripts -->
+<script th:src="@{/js/app-script.js}"></script>
+<!-- Vector map JavaScript -->
+<script th:src="@{/plugins/vectormap/jquery-jvectormap-2.0.2.min.js}"></script>
+<script th:src="@{/plugins/vectormap/jquery-jvectormap-world-mill-en.js}"></script>
+<!-- Apex chart -->
+<script th:src="@{/plugins/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/js/dashboard-eCommerce-v2.js}"></script>
+</body>
+</html>

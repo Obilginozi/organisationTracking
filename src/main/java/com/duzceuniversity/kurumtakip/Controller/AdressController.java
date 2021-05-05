@@ -24,14 +24,14 @@ public class AdressController {
     @Autowired
     CountryRepository countryRepository;
 
-    @RequestMapping(value = "/getilByContryId/{countryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getCitysByContryId/{countryId}", method = RequestMethod.GET)
     @ResponseBody
     private List<City> getilByContryId(@PathVariable int countryId) {
         List<City> list = cityRepository.getCityByCountryId(countryId);
         return list;
     }
 
-    @RequestMapping(value = "/getdistrictByCityId/{ilId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getdistrictByCityId/{cityId}", method = RequestMethod.GET)
     @ResponseBody
     private List<DistrictDTO> getDistrictByCityId(@PathVariable int cityId) {
         List<DistrictDTO> list = districtService.getDistrictByCityMernisKod(cityId);

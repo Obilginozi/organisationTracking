@@ -33,27 +33,27 @@ public class City implements Serializable {
         this.id = id;
     }
 
-    public String getcity() {
+    public String getCity() {
         return city;
     }
 
-    public void setcity(String city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public Country getcountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setcountry(Country country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
-    public List<District> getcityces() {
+    public List<District> getCityces() {
         return districts;
     }
 
-    public void setcityces(List<District> districts) {
+    public void setCityces(List<District> districts) {
         this.districts = districts;
     }
 }

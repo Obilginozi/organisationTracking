@@ -2,10 +2,12 @@ package com.duzceuniversity.kurumtakip.DataBase.Model;
 
 import com.duzceuniversity.kurumtakip.DataBase.Model.address.Country;
 import com.duzceuniversity.kurumtakip.DataBase.Model.address.District;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CountryRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -44,18 +46,14 @@ public class User {
     private int active= 1;
     private Date deleteAt;
 
-    public User(String username, String password, String name, String surname, String email, String roles) {
+    public User(String username, String password, String name, String surname, String email, String roles, Country country, District district) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.roles = roles;
-        Country country = new Country();
-        country.setId(1);
         this.country = country;
-        District district = new District();
-        district.setId(1);
         this.district = district;
     }
 

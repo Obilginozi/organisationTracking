@@ -27,7 +27,7 @@
         var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-          title: 'Tein Yazılım A.Ş.'
+          title: ''
         });
 		
 		

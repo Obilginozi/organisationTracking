@@ -1,6 +1,11 @@
-package com.duzceuniversity.kurumtakip.DataBase.Repository;
+package com.duzceuniversity.kurumtakip.DataBase;
 
 import com.duzceuniversity.kurumtakip.DataBase.Model.User;
+import com.duzceuniversity.kurumtakip.DataBase.Model.address.Country;
+import com.duzceuniversity.kurumtakip.DataBase.Model.address.District;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.UserRepository;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CountryRepository;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.address.DistrictRepository;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.hibernate.criterion.Example;
@@ -27,6 +32,10 @@ public class UserCreateAndInsertToDB implements CommandLineRunner {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    CountryRepository countryRepository;
+    @Autowired
+    DistrictRepository districtRepository;
 
     public UserCreateAndInsertToDB(UserRepository userRepository,DataSource dataSource) {
         this.userRepository = userRepository;
@@ -41,12 +50,14 @@ public class UserCreateAndInsertToDB implements CommandLineRunner {
                 jdbcTemplate.execute(stringObjectMap.get("sql_statements").toString());
             }
             getParameters();
-            User demo = new User("demo", passwordEncoder.encode("demo"), "ADMIN", "", "demo@demo.com", "admin");
-            User admin = new User("admin", passwordEncoder.encode("admin"), "ADMIN", "", "admin@admin.com", "admin");
+            Country country = countryRepository.findByCountryCode("TR");
+            District district = districtRepository.findByDistrictMernisKod(1554);
+            User demo = new User("demo", passwordEncoder.encode("demo"), "Demo", "DEMO", "demo@demo.com", "ADMIN", country, district);
+            User admin = new User("admin", passwordEncoder.encode("admin"), "Admin", "ADMIN", "admin@admin.com", "ADMIN", country, district);
             List<User> users = Arrays.asList(admin, demo);
             this.userRepository.saveAll(users);
             System.out.println("Database Kurulumu Tamamlandı....................................");
-            System.out.println("User KAyıtları Tamamlandı.......................................");
+            System.out.println("User Kayıtları Tamamlandı.......................................");
         }
     }
 

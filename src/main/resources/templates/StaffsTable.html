@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>U-ETDS | Personeller</title>
+    <title> Personeller</title>
     <!-- loader-->
     <link th:href="@{/css/pace.min.css}" rel="stylesheet"/>
     <script th:src="@{/js/pace.min.js}"></script>
@@ -99,7 +99,7 @@
                     <div class="form-group row">
                         <div class="col-md-12 card-header"><i class="fa fa-table"></i>&nbsp;PERSONEL TABLOSU
                             <div style="position: absolute; bottom: 10px; right: 10px;" align="right" class="btn-group">
-                                <a href="/personel/ekle" class="btn btn-success">YENİ PERSONEL</a>
+                                <a href="/staff/add" class="btn btn-success">YENİ PERSONEL</a>
                             </div>
                         </div>
                     </div>
@@ -108,18 +108,15 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-<!--                                <th>HES Durum</th>-->
-                                <th>Personel Türü</th>
                                 <th>Personel Adı</th>
                                 <th>Personel Soyadı</th>
+                                <th>Personel Türü</th>
                                 <th>Telefon Numarası</th>
-                                <th>HES Kodu Bilgileri</th>
-                                <!--                                <th>Kİmlİk Doğrulama</th>-->
+                                <th>HES Kodu</th>
                                 <th>Durumu</th>
                                 <th>İşlem</th>
                             </tr>
                             </thead>
-
                         </table>
                     </div>
                 </form>
@@ -143,100 +140,6 @@
                         </button>
                         <button type="button" class="btn btn-primary" id="btnDelete"><i
                                 class="fa fa-check-square-o"></i> Sil
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal animated rollIn" id="hesKoduModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">HES Kodu Bloke </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <form id="hesKoduModalForm">
-                            <div class="form-group">
-                                <input type="hidden" id="persId" name="persId">
-                                <div class="row">
-                                    <label for="hesKoduMdl" class="">HES Kodu</label>
-                                    <input type="text" class="form-control"
-                                           id="hesKoduMdl" name="hesKoduMdl" placeholder="HES Kodu Giriniz">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="autoclose-datepicker1" class="">Hes Kodu Geçerlilik Tarihi</label>
-                                    <input type="text" name="gecerlilikTarihiMdl"
-                                           id="autoclose-datepicker1"
-                                           class="form-control picked" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="firmaReferansNoMdl" class="">Firma Referans Kodu</label>
-                                    <input type="text" class="form-control"
-                                           id="firmaReferansNoMdl" name="firmaReferansNoMdl"
-                                           placeholder="Firma Referans Kodu Giriniz">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="aciklamaMdl" class="">Açıklama</label>
-                                    <input type="text" class="form-control"
-                                           id="aciklamaMdl" name="aciklamaMdl" placeholder="Açıklama Giriniz">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-times"></i>Vazgeç
-                        </button>
-                        <button type="button" class="btn btn-primary" id="btnBlock"><i class="fa fa-check-square-o"></i>Bloke
-                            Et
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal animated rollIn" id="hesKoduBilgilendirme">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">HES Kodu Bloke Detayları</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="gecerlilikTarihiLabel"> Bloke Geçerlilik
-                                        Tarihi </label>
-                                    <p id="gecerlilikTarihiLabel"></p>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="firmaReferansNoLabel"> Referans No </label>
-                                    <p id="firmaReferansNoLabel"></p>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="hesKoduLabel"> HES Kodu </label>
-                                    <p id="hesKoduLabel"></p>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="aciklamaLabel"> Açıklama </label>
-                                    <p id="aciklamaLabel"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="fa fa-times"></i>Kapat
                         </button>
                     </div>
                 </div>
@@ -328,7 +231,7 @@
                 processing: false,
                 serverSide: false,
                 ajax: {
-                    "url": "/personel/data",
+                    "url": "/staff/data",
                     "type": "POST",
                     "dataSrc": function (response) {
                         console.log(response);
@@ -337,34 +240,12 @@
                 },
                 columns: [
                     {"data": "id", "visible": false},
-                    {"data": "personTurDtable"},
-                    {"data": "adi"},
-                    {"data": "soyadi"},
-                    {"data": "telefon"},
-                    // {data: "hesKodu", render: function (data, type, row) {
-                    //         if (data != null || data !== "") {
-                    //             return data;
-                    //         }else{
-                    //             data = "-";
-                    //             return data;
-                    //         }
-                    //     },
-                    // },
-                    {
-                        data: "id", render: function (data, type, row) {
-                            return "<div class='btn-group'>" +
-                                "<a href='#' data-id='" + row.id + "' class='btnConfirmYetki btn btn-outline-info btn-sm  text-center' data-toggle=\"modal\" data-target=\"#hesKoduBilgilendirme\" >" +
-                                "<span class='icon text-danger-50'>" +
-                                "<i class='fa fa-search'></i>" +
-                                "</span>" +
-                                "<span class='text btn-sm btn-round delete-btn'>Kontrol</span>" +
-                                "</a>"
-                            "</div>";
-                        }
-                    },
-                    // {"data": "kimlikDogrulama"},
-                    {
-                        data: "durum", render: function (data, type, row) {
+                    {"data": "name"},
+                    {"data": "surname"},
+                    {"data": "staffTypeStr"},
+                    {"data": "phone"},
+                    {"data": "hesCode"},
+                    {data: "status", render: function (data, type, row) {
                             var durums;
                             if (data == 0) {
                                 durums = "<span class=\"badge badge-danger shadow-danger m-1\">" +
@@ -383,14 +264,6 @@
                             var ABC = "<div class='btn-group m-1' role='group'>" +
                                 "<button type='button' class='btn btn-outline-primary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>İşlem</button>" +
                                 "<div class='dropdown-menu' style='z-index: 1001;'>" +
-                                // "<a href='#' onclick='hesKoduFunc(" + row.id + row.hesKodu + ")' class=\"dropdown-item\">" +
-                                // "<i class='fa fa-edit fa-fw'></i>" +
-                                // "<span class='text delete-btn'>&nbsp;HES Kodu Bloke Et</span>" +
-                                // "</a>" +
-                                // "<a href='#' onclick='hesKoduFuncCancel(" + row.id + ")' class=\"dropdown-item\">" +
-                                // "<i class='fa fa-edit fa-fw'></i>" +
-                                // "<span class='text delete-btn'>&nbsp;HES Kodu Bloke Kaldır</span>" +
-                                // "</a>" +
                                 "<a href='/personel/update/?id=" + row.id + "' class=\"dropdown-item\">" +
                                 "<i class='fa fa-edit fa-fw'></i>" +
                                 "<span class='text add-model-btn'>&nbsp;Düzenle</span>" +
@@ -403,20 +276,6 @@
                                 "</div>" +
                                 "</div>";
                             return ABC;
-                            // return "<div class='btn-group'>" +
-                            //     "<a href='#' data-id='" + row.id + "' class='btnConfirmDelete btn btn-outline-danger btn-sm btn-icon-split float-right'>" +
-                            //     "<span class='icon text-danger-50'>" +
-                            //     "<i class='fa fa-trash fa-fw'></i>" +
-                            //     "</span>" +
-                            //     "<span class='text delete-btn'>&nbsp;Sil</span>" +
-                            //     "</a>" +
-                            //     "<a href='/personel/update/?id=" + row.id + "' class='btn btn-primary btn-sm btn-icon-split float-right'>" +
-                            //     "<span class='icon text-white-50'>" +
-                            //     "<i class='fa fa-edit fa-fw'></i>" +
-                            //     "</span>" +
-                            //     "<span class='text add-model-btn'>&nbsp;Düzenle</span>" +
-                            //     "</a>" +
-                            //     "</div>";
                         }
                     },
                 ],
@@ -462,7 +321,7 @@
             $('#loading-screen').fadeIn();
 
             $.ajax({
-                url: "/personel/delete",
+                url: "/staff/delete",
                 type: "post",
                 data: {id: dataID},
                 success: function (response) {
@@ -482,94 +341,6 @@
         table.buttons().container()
             .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
-</script>
-<script>
-    function hesKoduFunc(id, hes){
-        console.log(id)
-        $("#persId").val(id);
-        $("#hesKoduMdl").val(hes);
-        $('#hesKoduModal').modal('show');
-    }
-
-    $(document).on('click', '.btnConfirmYetki', function () {
-        var personId = $(this).data('id');
-        // var hesKodDoldur = $(this).data('hes');
-        console.log("HesKodu PersonId:", personId)
-        $.ajax({
-            type: "POST",
-            url: "/personel/hes",
-            data: {personId: personId},
-            cache: false,
-            timeout: 600000,
-
-            success: function (data) {
-                console.log(data);
-                    $("#gecerlilikTarihiLabel").text(data.gecerlilikTarihi);
-                    $("#firmaReferansNoLabel").text(data.firmaReferansNo);
-                    $("#hesKoduLabel").text(data.hesKodu);
-                    $("#aciklamaLabel").text(data.aciklama);
-            }
-        });
-        $('#hesKoduBilgilendirme').modal('show');
-    });
-
-    $("#btnBlock").click(function () {
-        var postdata = {
-            "personId": $('#persId').val(),
-            "hesKodu": $('#hesKoduMdl').val(),
-            "gecerlilikTarihi": $('#autoclose-datepicker1').val(),
-            "firmaReferansNo": $('#firmaReferansNoMdl').val(),
-            "aciklama": $('#aciklamaMdl').val()
-        }
-        console.log(postdata);
-        $.ajax({
-            type: "post",
-            contentType: "application/json",
-            url: "/personel/hesBloke",
-            data: JSON.stringify(postdata),
-            dataType: 'json',
-            success: function (response) {
-                $('#loading-screen').fadeOut('slow');
-                table.ajax.reload();
-                $('#hesKoduModal').modal('hide');
-                if (response.result) {
-                    success_noti();
-                } else {
-                    error_noti();
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
-            }
-        });
-    });
-
-    function hesKoduFuncCancel(id) {
-        var postdata = {
-            "personId": id,
-        }
-        console.log(postdata);
-        $.ajax({
-            type: "post",
-            contentType: "application/json",
-            url: "/personel/hesBlokeIptal",
-            data: JSON.stringify(postdata),
-            dataType: 'json',
-            success: function (response) {
-                $('#loading-screen').fadeOut('slow');
-                table.ajax.reload();
-                $('#hesKoduModal').modal('hide');
-                if (response.result) {
-                    success_noti();
-                } else {
-                    error_noti();
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
-            }
-        });
-    }
 </script>
 <script th:src="@{/plugins/bootstrap-datatable/js/jquery.dataTables.min.js}"></script>
 <script th:src="@{/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js}"></script>

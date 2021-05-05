@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en
-" xmlns:th="http://www.thymeleaf.org"
->
+" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -9,7 +8,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>U-ETDS | Kullanıcı Girişi</title>
+    <title>Kullanıcı Girişi</title>
     <!-- loader-->
     <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
     <script th:src="@{/js/pace.min.js}"></script>
@@ -100,9 +99,9 @@
                                                 <!--							  <label class="form-check-label" for="checkRememberMe">Beni Hatırla</label>-->
                                             </div>
                                         </div>
-                                        <div class="form-group col-5 ">
-                                            <a href="Sifre/reset">Şifremi Unuttum</a>
-                                        </div>
+<!--                                        <div class="form-group col-5 ">-->
+<!--                                            <a href="Sifre/reset">Şifremi Unuttum</a>-->
+<!--                                        </div>-->
                                     </div>
                                     <!-- Login Button -->
                                     <div class="form-actions" style="margin-top: 12px;">
@@ -110,11 +109,11 @@
                                                 class="btn btn-primary btn-block waves-effect waves-light">Gİrİş Yap
                                         </button>
                                     </div>
-                                    <div class="text-center pt-3">
-                                        <hr>
-                                        <p class="text-dark mb-0">Henüz kayıt olmadınız mı? <a
-                                                href="/FirmaBasvuru/basvuru" target="_blank"> Kayıt ol</a></p>
-                                    </div>
+<!--                                    <div class="text-center pt-3">-->
+<!--                                        <hr>-->
+<!--                                        <p class="text-dark mb-0">Henüz kayıt olmadınız mı? <a-->
+<!--                                                href="/FirmaBasvuru/basvuru" target="_blank"> Kayıt ol</a></p>-->
+<!--                                    </div>-->
                                 </fieldset>
                             </form>
                         </div>
@@ -123,9 +122,8 @@
             </div>
             <div class="card mb-0 ">
                 <div class="card-body">
-                    <p class="text-center">U-ETDS Ulaştırma Bakanlığı Onaylı "Ulaştırma Elektronik
-                        Takip ve Denetim Sistemi" Uygulaması Yazılımıdır. Kullanıcı dostu, kolaylaştırılmış
-                        arayüzlü uygulamamız ve nitelikli devam desteği ile hizmet etmekteyiz.</p>
+                    <p class="text-center">Kullanıcı dostu, kolaylaştırılmış
+                        arayüzlü uygulamamız ile kurum takibi artık çok kolay</p>
                 </div>
             </div>
         </div>
@@ -161,33 +159,6 @@
     $('.js-tilt').tilt({
         scale: 1.1
     })
-
-    // function userControl() {
-    //     var username = $("#txtUsername").val();
-    //     // username = '"' + username + '"';
-    //     console.log(username);
-    //     $.ajax({
-    //         type: "POST",
-    //         contentType: "application/json",
-    //         url: "/kontrol?username=" + username,
-    //         // data: JSON.stringify({data:"username"}),
-    //         // data: "{'data': '" + username + "'}",
-    //         dataType: 'json',
-    //         cache: false,
-    //         timeout: 600000,
-    //         success: function (response) {
-    //             console.log(response);
-    //             if (response.result) {
-    //                 console.log("Kayıtlı Kullanıcı.");
-    //             } else {
-    //                 console.log("else");
-    //                 error_noti_yuk("Kullanıcı Kaydı Bulunamadı");
-    //             }
-    //         },
-    //         error: function (jqXHR, textStatus, errorThrown) {
-    //         }
-    //     });
-    // }
 </script>
 </body>
 </html>

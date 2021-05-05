@@ -46,11 +46,11 @@ public class District implements Serializable {
         this.city = city;
     }
 
-    public int getdistrictMernisKod() {
+    public int getDistrictMernisKod() {
         return districtMernisKod;
     }
 
-    public void setdistrictMernisKod(int districtMernisKod) {
+    public void setDistrictMernisKod(int districtMernisKod) {
         this.districtMernisKod = districtMernisKod;
     }
 }

@@ -21,14 +21,16 @@ public class StaffDTO implements Serializable {
     private String surname;
     private String email;
     private String phone;
-    private String birthday;
+    private String bt;
+    private Date birthday;
     private String tcPass;
+    private String hesCode;
     private StaffType staffType;
-    private String sex;
     protected Country country;
     protected District district;
     private String address;
     private String postalCode;
+    private String sex;
     private User user;
     private byte status;
     private Date deleteAt;

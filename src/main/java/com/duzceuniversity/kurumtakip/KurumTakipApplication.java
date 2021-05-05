@@ -5,23 +5,20 @@ import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -30,7 +27,7 @@ import java.io.IOException;
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 @SpringBootApplication
 //@EnableAutoConfiguration
-@ComponentScan("com.duzceuniversity.kurumtakip.DataBase.Repository")
+//@ComponentScan("com.duzceuniversity.kurumtakip.DataBase.Repository")
 //@EntityScan("com.duzceuniversity.kurumtakip")
 //@EnableJpaRepositories("com.duzceuniversity.kurumtakip.DataBase.Repository")
 public class KurumTakipApplication extends SpringBootServletInitializer implements ApplicationRunner {
@@ -40,6 +37,9 @@ public class KurumTakipApplication extends SpringBootServletInitializer implemen
         Runtime rt = Runtime.getRuntime();
         String url = "http://localhost:8080";
         rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+        Logger logger = LoggerFactory.getLogger(KurumTakipApplication.class);
+        logger.debug("Proje debug da çalışmakta.");
+        logger.info("System is running...");
     }
 
     @Bean

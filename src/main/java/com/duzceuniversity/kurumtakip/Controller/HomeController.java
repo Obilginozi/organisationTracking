@@ -2,8 +2,6 @@ package com.duzceuniversity.kurumtakip.Controller;
 
 import com.duzceuniversity.kurumtakip.DataBase.Model.IpInfo;
 import com.duzceuniversity.kurumtakip.DataBase.Model.User;
-import com.duzceuniversity.kurumtakip.DataBase.Repository.IpInfoRepository;
-import com.duzceuniversity.kurumtakip.DataBase.Repository.UserRepository;
 import com.duzceuniversity.kurumtakip.Response.ResponseItem;
 import com.duzceuniversity.kurumtakip.Service.DashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Access;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -32,12 +29,17 @@ public class HomeController{
         return remoteAddr;
     }
 
-    @GetMapping({"/", "/giris"})
+    @GetMapping({"/", "/login"})
     public String login(HttpServletRequest request) {
         IpInfo ipInfo = new IpInfo();
         ipInfo.setIpAdress(getClientIp(request));
         dashBoardService.ipInfo(ipInfo);
-        return "Giris";
+        return "Login";
+    }
+
+    @GetMapping({"/home"})
+    public String homePage() {
+        return "Index";
     }
 
     @ResponseBody

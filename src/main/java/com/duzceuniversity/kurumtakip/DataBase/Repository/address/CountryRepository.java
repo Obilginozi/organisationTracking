@@ -9,10 +9,12 @@ import java.util.List;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country,Integer> {
+    List<Country> findAll();
+
     Country findById(int id);
 
     Country findByCountry(String Country);
 
-    Country findByCountryKod(String CountryKod);
+    Country findByCountryCode(String CountryCode);
 
 }

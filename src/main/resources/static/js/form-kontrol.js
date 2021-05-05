@@ -74,9 +74,8 @@ $(document).ready(function () {
         var cityId = this.value;
         console.log(cityId)
         $.ajax({
-            url: "/getilceByIlId/"+cityId,
+            url: "/getdistrictByCityId/"+cityId,
             type: "get",
-            //data: {ulkeId: cityId},
             success: function (response) {
 
                 $('#loading-screen').fadeOut('slow');
@@ -84,7 +83,7 @@ $(document).ready(function () {
 
                 var i;
                 for (i = 0; i < response.length; ++i) {
-                    $('#selectDistrict').append(new Option(response[i].ilce, response[i].id));
+                    $('#selectDistrict').append(new Option(response[i].district, response[i].id));
                 }
 
                 $("#selectDistrict").val($("#selectDistrict option:first").val());
@@ -190,33 +189,32 @@ $(document).ready(function () {
             var id = getUrlParameter('id');
             if(id==null){
                 var formData = {
-                    "adi": $("#adi").val(),
-                    "soyadi" : $("#soyAdi").val(),
-                    "tcKimlikPasaportNo":$("#tcKimlikPasaportNo").val(),
-                    "pasaportNo":$("#pasaportNo").val(),
+                    "name": $("#adi").val(),
+                    "surname" : $("#soyAdi").val(),
+                    "tcPass":$("#tcKimlikPasaportNo").val(),
                     "email":$("#email").val(),
-                    "hesKodu":$("#hesKodu").val(),
-                    "telefon":$("#telefon").val(),
-                    "adres":$("#adres").val(),
-                    "cinsiyet":$("#cinsiyet").val(),
-                    "dt":$("#autoclose-datepicker").val(),
-                    "postaKodu":$("#posta").val(),
-                    "durum":$('input[name="durum"]:checked').val(),
-                    "personTur":{
+                    "hesCode":$("#hesKodu").val(),
+                    "phone":$("#telefon").val(),
+                    "address":$("#adres").val(),
+                    "sex":$("#cinsiyet").val(),
+                    "bt":$("#autoclose-datepicker").val(),
+                    "postalCode":$("#posta").val(),
+                    "status":$('input[name="durum"]:checked').val(),
+                    "staffType":{
                         "id":$("#persontur").val(),
-                        "personelTur":$('#persontur option:selected:enabled').html()
+                        "staffType":$('#persontur option:selected:enabled').html()
                     },
-                    "uyrukUlke":{
+                    "country":{
                         "id":$("#ulke").val(),
-                        "ulke":$('#ulke option:selected').html()
+                        "country":$('#ulke option:selected').html()
                     },
-                    "ilce":
+                    "district":
                         {
                             "id": $("#selectDistrict").val(),
-                            "ilce": $('#selectDistrict option:selected').html(),
-                            "il": {
+                            "district": $('#selectDistrict option:selected').html(),
+                            "city": {
                                 "id": $("#selectCity").val(),
-                                "il": $('#selectCity option:selected').html()
+                                "city": $('#selectCity option:selected').html()
                             }
                         }
                 }
@@ -225,34 +223,33 @@ $(document).ready(function () {
            else {
                 var formData = {
                     "id":id,
-                    "adi": $("#adi").val(),
-                    "soyadi" : $("#soyAdi").val(),
-                    "tcKimlikPasaportNo":$("#tcKimlikPasaportNo").val(),
-                    "pasaportNo":$("#pasaportNo").val(),
+                    "name": $("#adi").val(),
+                    "surname" : $("#soyAdi").val(),
+                    "tcPass":$("#tcKimlikPasaportNo").val(),
                     "email":$("#email").val(),
-                    "hesKodu":$("#hesKodu").val(),
-                    "telefon":$("#telefon").val(),
-                    "adres":$("#adres").val(),
-                    "cinsiyet":$("#cinsiyet").val(),
-                    "dt":$("#autoclose-datepicker2").val(),
-                    "postaKodu":$("#posta").val(),
-                    "durum":$('input[name="durum"]:checked').val(),
-                    "personTur":{
+                    "hesCode":$("#hesKodu").val(),
+                    "phone":$("#telefon").val(),
+                    "address":$("#adres").val(),
+                    "sex":$("#cinsiyet").val(),
+                    "bt":$("#autoclose-datepicker2").val(),
+                    "postalCode":$("#posta").val(),
+                    "status":$('input[name="durum"]:checked').val(),
+                    "staffType":{
                         "id":$("#persontur").val(),
-                        "personelTur":$('#persontur option:selected:enabled').html()
+                        "staffType":$('#persontur option:selected:enabled').html()
                     },
-                    "uyrukUlke":{
+                    "country":{
                         "id":$("#ulke").val(),
-                        "ulke":$(" #ulke option:selected").html()
+                        "country":$(" #ulke option:selected").html()
                     },
-                    "ilce":
+                    "district":
                         {
                             "id": $("#selectDistrict").val(),
 
-                            "ilce": $('#selectDistrict option:selected').html(),
-                            "il": {
+                            "district": $('#selectDistrict option:selected').html(),
+                            "city": {
                                 "id": $("#selectCity").val(),
-                                "il": $('#selectCity option:selected').html()
+                                "city": $('#selectCity option:selected').html()
                             }
                         }
                 }
@@ -261,7 +258,7 @@ $(document).ready(function () {
            $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "/personel/personelekle",
+                url: "/staff/staffekle",
                 data: JSON.stringify(formData),
                 dataType: 'json',
                 cache: false,
@@ -273,12 +270,12 @@ $(document).ready(function () {
                     if(data.result){
                         success_noti_custom(data.message);
                         setTimeout(function() {
-                            window.location.replace("/personel/personeller");
+                            window.location.replace("/staff/staffs");
                         }, 2000);
                     }
                     else{
                         error_noti_yuk(data.message);
-                        console.log(data.message+" sdfasdf")
+                        console.log(data.message+" HATA")
                     }
                 },
                 error: function (e) {

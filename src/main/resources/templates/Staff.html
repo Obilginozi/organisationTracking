@@ -7,7 +7,7 @@
     <meta name="viewport" content=" initial-scale=1, maximum-scale-1, shrink-to-fit=yes"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>U-ETDS | Personel Ekle</title>
+    <title> Personel Ekle</title>
 
     <link rel="stylesheet" th:href="@{/css/pace.min.css}"/>
     <script th:src="@{/js/pace.min.js}"></script>
@@ -101,22 +101,22 @@
                                                 <div class="col-md-6">
                                                     <label for="adi" class="">Ad <span
                                                             style="color: red">(*)</span></label>
-                                                    <input th:if="${personel != null}" type="text" class="form-control"
-                                                           id="adi" name="ad" th:value="${personel.adi}"
+                                                    <input th:if="${staff != null}" type="text" class="form-control"
+                                                           id="adi" name="ad" th:value="${staff.name}"
                                                            placeholder="Ad giriniz" required>
-                                                    <input th:if="${personel == null}" type="text"
+                                                    <input th:if="${staff == null}" type="text"
                                                            class="form-control form-control-sm" id="adi"
                                                            name="ad" placeholder="Ad Giriniz" required/>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="soyAdi" class="">Soyad <span
                                                             style="color: red">(*)</span></label>
-                                                    <input th:if="${personel != null}" type="text"
-                                                           th:value="${personel.soyadi}"
+                                                    <input th:if="${staff != null}" type="text"
+                                                           th:value="${staff.surname}"
                                                            class="form-control form-control-sm" id="soyAdi"
                                                            name="soyad"
                                                            placeholder="SOYAD" required>
-                                                    <input th:if="${personel == null}" type="text"
+                                                    <input th:if="${staff == null}" type="text"
                                                            class="form-control form-control-sm" id="soyAdi"
                                                            name="soyad"
                                                            placeholder="Soyadı Giriniz" required>
@@ -128,49 +128,7 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="tcKimlikPasaportNo" class="">TC Kİmlİk Numarası <span
-                                                            style="color: red">(*)</span></label>
-                                                    <input th:if="${personel != null}"
-                                                           th:value="${personel.tcKimlikPasaportNo}"
-                                                           class="form-control form-control-sm"
-                                                           id="tcKimlikPasaportNo" placeholder="Kimlik No Giriniz"
-                                                           name="tc"
-                                                           maxlength="11" required>
-                                                    <input th:if="${personel == null}"
-                                                           class="form-control form-control-sm" maxlength="11"
-                                                           id="tcKimlikPasaportNo"
-                                                           placeholder="Kimlik No Giriniz" name="tc" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="pasaportNo" class="">Pasaport Numarası </label>
-                                                    <input th:if="${personel != null}"
-                                                           th:value="${personel.pasaportNo}"
-                                                           class="form-control form-control-sm"
-                                                           id="pasaportNo" placeholder="Pasaport No Giriniz" name="tc"
-                                                           maxlength="11">
-                                                    <input th:if="${personel == null}"
-                                                           class="form-control form-control-sm" maxlength="11"
-                                                           id="pasaportNo"
-                                                           placeholder="Pasaport No Giriniz" name="tc">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 ">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="hesKodu" class="">HES Kodu </label>
-                                                    <input th:if="${personel != null}"
-                                                           th:value="${personel.hesKodu}" maxlength="12"
-                                                           class="form-control form-control-sm"
-                                                           id="hesKodu" name="hesKodu" placeholder="HES Kodu Giriniz">
-                                                    <input th:if="${personel == null}" maxlength="12"
-                                                           class="form-control form-control-sm" id="hesKodu"
-                                                           name="hesKodu" placeholder="HES Kodu Giriniz">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group" th:if="${personel == null}">
+                                                    <div class="form-group" th:if="${staff == null}">
                                                         <label for="ulke" class="">Uyruk <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="ulke"
@@ -178,23 +136,66 @@
                                                             <option disabled="disabled" selected="selected"> ----- Uyruk
                                                                 Seçiniz -----
                                                             </option>
-                                                            <option th:each="ulke : ${listUlke}" th:value="${ulke.id}"
-                                                                    th:text="${ulke.ulke}"></option>
+                                                            <option th:each="listCountry : ${listCountry}" th:value="${listCountry.id}"
+                                                                    th:text="${listCountry.country}"></option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group" th:if="${personel != null}">
+                                                    <div class="form-group" th:if="${staff != null}">
                                                         <label for="ulke" class="">Uyruk <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="ulke"
                                                                 name="uyruk" required>
-                                                            <option th:each="ulke : ${listUlke}" th:value="${ulke.id}"
-                                                                    th:text="${ulke.ulke}"
-                                                                    th:selected="${ulke.id}==${equalUlke}"></option>
+                                                            <option th:each="listCountry : ${listCountry}" th:value="${listCountry.id}"
+                                                                    th:text="${listCountry.country}"
+                                                                    th:selected="${listCountry.id}==${equalCountry}"></option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group" th:if="${personel == null}">
+                                                    <label for="tcKimlikPasaportNo" class="">TC Kİmlİk Numarası <span
+                                                            style="color: red">(*)</span></label>
+                                                    <input th:if="${staff != null}"
+                                                           th:value="${staff.tcPass}"
+                                                           class="form-control form-control-sm"
+                                                           id="tcKimlikPasaportNo" placeholder="Kimlik No Giriniz"
+                                                           name="tc"
+                                                           maxlength="11" required>
+                                                    <input th:if="${staff == null}"
+                                                           class="form-control form-control-sm" maxlength="11"
+                                                           id="tcKimlikPasaportNo"
+                                                           placeholder="Kimlik No Giriniz" name="tc" required>
+                                                </div>
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <label for="pasaportNo" class="">Pasaport Numarası </label>-->
+<!--                                                    <input th:if="${staff != null}"-->
+<!--                                                           th:value="${staff.tcPass}"-->
+<!--                                                           class="form-control form-control-sm"-->
+<!--                                                           id="pasaportNo" placeholder="Pasaport No Giriniz" name="tc"-->
+<!--                                                           maxlength="11">-->
+<!--                                                    <input th:if="${staff == null}"-->
+<!--                                                           class="form-control form-control-sm" maxlength="11"-->
+<!--                                                           id="pasaportNo"-->
+<!--                                                           placeholder="Pasaport No Giriniz" name="tc">-->
+<!--                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <div class="form-group">
+                                            <div class="row">
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <label for="hesKodu" class="">HES Kodu </label>-->
+<!--                                                    <input th:if="${staff != null}"-->
+<!--                                                           th:value="${staff.hesKodu}" maxlength="12"-->
+<!--                                                           class="form-control form-control-sm"-->
+<!--                                                           id="hesKodu" name="hesKodu" placeholder="HES Kodu Giriniz">-->
+<!--                                                    <input th:if="${staff == null}" maxlength="12"-->
+<!--                                                           class="form-control form-control-sm" id="hesKodu"-->
+<!--                                                           name="hesKodu" placeholder="HES Kodu Giriniz">-->
+<!--                                                </div>-->
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group" th:if="${staff == null}">
                                                         <label for="cinsiyet" class="">Cİnsİyet <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="cinsiyet"
@@ -206,22 +207,22 @@
                                                             <option value="0">Kadın</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group" th:if="${personel != null}">
+                                                    <div class="form-group" th:if="${staff != null}">
                                                         <label for="cinsiyet" class="">Cinsiyet <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="cinsiyet"
                                                                 name="cinsiyet" required>
-                                                            <option value="1" th:selected="1==${personel.cinsiyet}">
+                                                            <option value="1" th:selected="1==${staff.sex}">
                                                                 Erkek
                                                             </option>
-                                                            <option value="0" th:selected="0==${personel.cinsiyet}">
+                                                            <option value="0" th:selected="0==${staff.sex}">
                                                                 Kadın
                                                             </option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group" th:if="${personel == null}">
+                                                    <div class="form-group" th:if="${staff == null}">
                                                         <label for="persontur" class="">Personel Tür <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="persontur"
@@ -229,18 +230,18 @@
                                                             <option disabled="disabled" selected="selected"> -----
                                                                 Personel Tür Seçiniz -----
                                                             </option>
-                                                            <option th:each="tur : ${Tur}" th:value="${tur.id}"
-                                                                    th:text="${tur.personelTur}"></option>
+                                                            <option th:each="Type : ${Type}" th:value="${Type.id}"
+                                                                    th:text="${Type.staffType}"></option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group" th:if="${personel != null}">
+                                                    <div class="form-group" th:if="${staff != null}">
                                                         <label for="persontur" class="">Personel Türü <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="persontur"
                                                                 name="pTur" required>
-                                                            <option th:each="tur : ${Tur}" th:value="${tur.id}"
-                                                                    th:text="${tur.personelTur}"
-                                                                    th:selected="${tur.id} == ${personel.personTur.id}"></option>
+                                                            <option th:each="Type : ${Type}" th:value="${Type.id}"
+                                                                    th:text="${Type.staffType}"
+                                                                    th:selected="${Type.id} == ${staff.staffType.id}"></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -252,12 +253,12 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="email" class="">E-Mail </label>
-                                                    <input type="email" th:if="${personel == null}"
+                                                    <input type="email" th:if="${staff == null}"
                                                            class="form-control form-control-sm" id="email" name="email"
                                                            placeholder="Varsa Mail Adresini Giriniz">
-                                                    <input type="email" th:if="${personel != null}"
+                                                    <input type="email" th:if="${staff != null}"
                                                            class="form-control form-control-sm" id="email" name="email"
-                                                           th:value="${personel.email}"
+                                                           th:value="${staff.email}"
                                                            placeholder="Varsa Mail Adresini Giriniz">
                                                 </div>
 
@@ -265,13 +266,13 @@
                                                 <div class="col-md-6">
                                                     <label for="telefon" class="">Telefon Numarası <span
                                                             style="color: red">(*)</span></label>
-                                                    <input th:if="${personel == null}"
+                                                    <input th:if="${staff == null}"
                                                            class="form-control form-control-sm"
                                                            id="telefon" name="telefon" required
                                                            placeholder="Telefon No Alanını Giriniz" maxlength="10">
-                                                    <input th:if="${personel != null}"
+                                                    <input th:if="${staff != null}"
                                                            class="form-control form-control-sm"
-                                                           id="telefon" name="telefon" th:value="${personel.telefon}"
+                                                           id="telefon" name="telefon" th:value="${staff.phone}"
                                                            required placeholder="Telefon No Alanını Giriniz"
                                                            maxlength="10">
                                                 </div>
@@ -283,7 +284,7 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="form-group" th:if="${personel == null}">
+                                                    <div class="form-group" th:if="${staff == null}">
                                                         <label for="selectCity" class="">İl <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="selectCity"
@@ -291,25 +292,25 @@
                                                             <option disabled="disabled" selected="selected"> ----- Şehir
                                                                 Seçiniz -----
                                                             </option>
-                                                            <option th:each="city : ${citys}" th:value="${city.id}"
-                                                                    th:text="${city.il}"
+                                                            <option th:each="listCity : ${listCity}" th:value="${listCity.id}"
+                                                                    th:text="${listCity.getCity()}"
                                                             ></option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group" th:if="${personel != null}">
+                                                    <div class="form-group" th:if="${staff != null}">
                                                         <label for="selectCity" class="">İl <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="selectCity"
                                                                 name="selectCity" required>
-                                                            <option th:each="city : ${citys}" th:value="${city.id}"
-                                                                    th:text="${city.il}"
-                                                                    th:selected="${city.id} == ${personel.ilce.il.id}"
+                                                            <option th:each="listCity : ${listCity}" th:value="${listCity.id}"
+                                                                    th:text="${listCity.city}"
+                                                                    th:selected="${listCity.id} == ${staff.district.city.id}"
                                                             ></option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group" th:if="${personel == null}">
+                                                    <div class="form-group" th:if="${staff == null}">
                                                         <label for="selectDistrict" class="">İlçe <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm"
@@ -320,15 +321,15 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="form-group" th:if="${personel != null}">
+                                                    <div class="form-group" th:if="${staff != null}">
                                                         <label for="selectDistrict" class="">İlçe <span
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm"
                                                                 id="selectDistrict" name="selectDistrict" required>
-                                                            <option th:each="ilceList: ${ilceLists}"
-                                                                    th:value="${ilceList.getId()}"
-                                                                    th:text="${ilceList.getIlce()}"
-                                                                    th:selected="${ilceList.getId()} == ${personel.ilce.id}">
+                                                            <option th:each="districtLists: ${districtLists}"
+                                                                    th:value="${districtLists.getId()}"
+                                                                    th:text="${districtLists.getDistrict()}"
+                                                                    th:selected="${districtLists.getId()} == ${staff.district.id}">
                                                             </option>
                                                         </select>
                                                     </div>
@@ -342,11 +343,11 @@
                                                 <div class="col-md-12">
                                                     <label class="control-label">Adres <span
                                                             style="color: red">(*)</span></label>
-                                                    <textarea th:if="${personel == null}" rows="4" class="form-control"
+                                                    <textarea th:if="${staff == null}" rows="4" class="form-control"
                                                               id="adres" name="adres"
                                                               required placeholder="Adres Alanını Giriniz"></textarea>
-                                                    <textarea th:if="${personel != null}" rows="4" class="form-control"
-                                                              id="adres" name="adres" th:text="${personel.adres}"
+                                                    <textarea th:if="${staff != null}" rows="4" class="form-control"
+                                                              id="adres" name="adres" th:text="${staff.address}"
                                                               required placeholder="Adres Alanını Giriniz"></textarea>
                                                 </div>
                                             </div>
@@ -361,14 +362,14 @@
                                                             <label>Doğum Tarİhİ </label>
                                                             <span class="fa fa-calendar"><span
                                                                     style="color: red">(*)</span></span>
-                                                            <input th:if="${personel == null}" type="text"
+                                                            <input th:if="${staff == null}" type="text"
                                                                    id="autoclose-datepicker" name="dogumT"
                                                                    class="form-control"
                                                                    placeholder="Varsa Doğum Tarihi Alanını Giriniz"
                                                                    required>
-                                                            <input th:if="${personel != null}" type="text"
+                                                            <input th:if="${staff != null}" type="text"
                                                                    id="autoclose-datepicker2" name="dogumT"
-                                                                   th:value="${personel.dt}" class="form-control"
+                                                                   th:value="${staff.birthday}" class="form-control"
                                                                    placeholder="Varsa Doğum Tarihi Alanını Giriniz"
                                                                    required>
                                                         </div>
@@ -378,12 +379,12 @@
                                                     <div class="form-group">
                                                         <div class="card-body">
                                                             <label>Posta Kodu</label>
-                                                            <input th:if="${personel == null}" type="text" id="posta"
+                                                            <input th:if="${staff == null}" type="text" id="posta"
                                                                    name="posta" maxlength="5" class="form-control"
                                                                    placeholder="Varsa Posta Kodu Giriniz">
-                                                            <input th:if="${personel!= null}" type="text" id="posta"
+                                                            <input th:if="${staff!= null}" type="text" id="posta"
                                                                    name="posta" maxlength="5"
-                                                                   th:value="${personel.postaKodu}" class="form-control"
+                                                                   th:value="${staff.postalCode}" class="form-control"
                                                                    placeholder="Varsa Posta Kodu Giriniz">
                                                         </div>
                                                     </div>
@@ -397,7 +398,7 @@
                                             <div class="row">
                                                 <label>&emsp; &nbsp;&nbsp;</label>
                                                 <div class="col-md-6">
-                                                    <div class="form-group" th:if="${personel == null}">
+                                                    <div class="form-group" th:if="${staff == null}">
 
                                                         <div class="icheck-material-success icheck-inline">
                                                             <input type="radio" id="inline-radio-success" name="durum"
@@ -410,35 +411,35 @@
                                                             <label for="inline-radio-primary">Pasİf</label>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group" th:if="${personel != null}">
+                                                    <div class="form-group" th:if="${staff != null}">
                                                         <div class="icheck-material-success icheck-inline">
-                                                            <input type="radio" th:checked="${personel.durum == 1}"
+                                                            <input type="radio" th:checked="${staff.status == 1}"
                                                                    id="inline-radio-success" name="durum" checked
                                                                    value=1>
                                                             <label for="inline-radio-success">Aktİf</label>
                                                         </div>
                                                         <div class="icheck-material-primary icheck-inline">
-                                                            <input type="radio" th:checked="${personel.durum == 2}"
+                                                            <input type="radio" th:checked="${staff.status == 2}"
                                                                    id="inline-radio-primary" name="durum" value=0>
                                                             <label for="inline-radio-primary">Pasİf</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <div class="btn-group pull-right" th:if="${personel == null}">
+                                                    <div class="btn-group pull-right" th:if="${staff == null}">
                                                         <button type="submit" class="btn btn-success"><i
                                                                 class="fa fa-check-square-o"></i> Kaydet
                                                         </button>
                                                         <label>&emsp; &nbsp;&nbsp;&nbsp;</label>
-                                                        <a href="/personel/personeller" class="btn btn-danger"><i
+                                                        <a href="/staff/personeller" class="btn btn-danger"><i
                                                                 class="zmdi zmdi-block-alt"></i> İptal</a>
                                                     </div>
-                                                    <div class="form-grou pull-rightp" th:if="${personel != null}">
+                                                    <div class="form-grou pull-rightp" th:if="${staff != null}">
                                                         <button type="submit" class="btn btn-success"><i
                                                                 class="fa fa-check-square-o"></i> Güncelle
                                                         </button>
                                                         <label>&emsp; &nbsp;&nbsp;&nbsp;</label>
-                                                        <a href="/personel/personeller" class="btn btn-danger"><i
+                                                        <a href="/staff/personeller" class="btn btn-danger"><i
                                                                 class="zmdi zmdi-block-alt"></i> İptal</a>
                                                     </div>
                                                 </div>
@@ -532,11 +533,5 @@
         }
     });
 </script>
-<!--<script th:inline="javascript">-->
-<!--    var kontrol = /*[[${personel}]]*/;-->
-<!--    console.log(kontrol);-->
-<!--    if (kontrol != null){-->
-<!--    }-->
-<!--</script>-->
 </body>
 </html>

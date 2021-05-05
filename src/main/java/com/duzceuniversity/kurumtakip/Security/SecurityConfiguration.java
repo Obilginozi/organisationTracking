@@ -27,29 +27,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	String[] resources = new String[]{
+        String[] resources = new String[]{
                 "/", "/home","/pictureCheckCode","/include/**",
                 "/css/**","/icons/**","/images/**","/js/**","/layer/**,/resources/**"
         };
-        http	
-        		.csrf().disable()
+        http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(resources).permitAll()
+                .antMatchers("/SifreUnuttum.html").permitAll()
+                .antMatchers("/403.html").permitAll()
+                .antMatchers("/profile/**").hasAnyRole("ADMIN")
+
+                .antMatchers("/personel/update/*").hasAnyRole("ADMIN")
+                .antMatchers("/personel/ekle").hasAnyRole("ADMIN")
+                .antMatchers("/personel/personeller").hasAnyRole("ADMIN")
+                .antMatchers("/personel/topluEkle").hasAnyRole("ADMIN")
+                .antMatchers("/kullanici/**").hasAnyRole("ADMIN")
+                .antMatchers("/iletisim/**").authenticated()
+//                .antMatchers("/").authenticated()   //Anasayfaya authentica olmuş herkes erişebilir.
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/management/**").hasAnyRole("ADMIN")
                 .antMatchers("/error").authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/signin")
-                .loginPage("/giris").permitAll()
-                .defaultSuccessUrl("/anasayfa/dash", true)
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/home", true)
                 .usernameParameter("txtUsername")
                 .passwordParameter("txtPassword")
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/giris")
-               /* .and()
-                .rememberMe().tokenValiditySeconds(2592000).key("mySecret!").rememberMeParameter("checkRememberMe").userDetailsService(userPrincipalDetailsService)
-                */
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
     }

@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <packaging>jar</packaging>
     <groupId>com.duzceUniversity</groupId>
@@ -14,34 +14,26 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>KurumTakip</name>
     <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>1.8</java.version>
         <tomcat.version>9.0.36</tomcat.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
         <dependency>
             <groupId>org.apache.axis</groupId>
             <artifactId>axis</artifactId>
             <version>1.4</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20180813</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -52,74 +44,32 @@
             <version>1.18.8</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
-        <!--		&lt;!&ndash; https://mvnrepository.com/artifact/javax/jws &ndash;&gt;-->
-        <!--		<dependency>-->
-        <!--			<groupId>javax</groupId>-->
-        <!--			<artifactId>jws</artifactId>-->
-        <!--			<version>2.0.0</version>-->
-        <!--		</dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/javax.jws/javax.jws-api -->
         <dependency>
             <groupId>javax.jws</groupId>
             <artifactId>javax.jws-api</artifactId>
             <version>1.1</version>
         </dependency>
-
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>4.0.0</version>
         </dependency>
-
-
-
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
-        <!--		<dependency>-->
-        <!--			<groupId>io.springfox</groupId>-->
-        <!--			<artifactId>springfox-swagger2</artifactId>-->
-        <!--			<version>2.9.2</version>-->
-        <!--		</dependency>-->
-        <!--		&lt;!&ndash; https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui &ndash;&gt;-->
-        <!--		<dependency>-->
-        <!--			<groupId>io.springfox</groupId>-->
-        <!--			<artifactId>springfox-swagger-ui</artifactId>-->
-        <!--			<version>2.9.2</version>-->
-        <!--		</dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
-        <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>2.3.5</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -127,6 +77,11 @@
         <dependency> <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.28</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
@@ -138,25 +93,21 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.jws/jsr181-api -->
         <dependency>
             <groupId>javax.jws</groupId>
             <artifactId>jsr181-api</artifactId>
             <version>1.0-MR1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.xml.ws/jaxws-api -->
         <dependency>
             <groupId>javax.xml.ws</groupId>
             <artifactId>jaxws-api</artifactId>
             <version>2.2.6</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -173,8 +124,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -188,9 +137,6 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j -->
-        <!-- Logging -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -201,21 +147,16 @@
             <artifactId>log4j-core</artifactId>
             <version>2.5</version>
         </dependency>
-
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.iyzipay/iyzipay-java -->
         <dependency>
             <groupId>com.iyzipay</groupId>
             <artifactId>iyzipay-java</artifactId>
             <version>2.0.66</version>
         </dependency>
-
-        <!-- Test -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
@@ -246,104 +187,43 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.10</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.tein.edonusum</groupId>-->
-<!--            <artifactId>despatch</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.duzceUniversity</groupId>
+            <artifactId>KurumTakip</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
-            <!--			<plugin>-->
-            <!--				<groupId>org.codehaus.mojo</groupId>-->
-            <!--				<artifactId>jaxb2-maven-plugin</artifactId>-->
-            <!--				<version>2.3.1</version>-->
-
-            <!--				<groupId>org.jvnet.jaxb2.maven2</groupId>-->
-            <!--				<artifactId>maven-jaxb2-plugin</artifactId>-->
-            <!--				<version>0.13.2</version>-->
-
-            <!--				<executions>-->
-            <!--					<execution>-->
-            <!--						<id>xjc</id>-->
-            <!--						<goals>-->
-            <!--							<goal>xjc</goal>-->
-            <!--						</goals>-->
-            <!--						<configuration>-->
-            <!--							<packageName>com.tein.uetds.eArsivSoap</packageName>-->
-            <!--							<sourceType>wsdl</sourceType>-->
-            <!--							<sources>-->
-            <!--								<source>${project.basedir}/src/main/resources/wsdl/EFaturaArchive.wsdl</source>-->
-            <!--							</sources>-->
-            <!--							<outputDirectory>src/main/java</outputDirectory>-->
-            <!--							<clearOutputDir>false</clearOutputDir>-->
-            <!--						</configuration>-->
-            <!--					</execution>-->
-
-            <!--					<execution>-->
-            <!--						<id>schema2-generate</id>-->
-            <!--						<phase>generate-resources</phase>-->
-            <!--						<goals>-->
-            <!--							<goal>generate</goal>-->
-            <!--						</goals>-->
-            <!--						<configuration>-->
-            <!--							<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>-->
-            <!--							<schemaIncludes>-->
-            <!--								<include>SmmWS.wsdl</include>-->
-            <!--							</schemaIncludes>-->
-            <!--							<generatePackage>com.tein.uetds.eSerbestSoap</generatePackage>-->
-            <!--							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>-->
-            <!--						</configuration>-->
-            <!--					</execution>-->
-
-            <!--				</executions>-->
-            <!--			</plugin>-->
-            <!--			<plugin>-->
-            <!--				<groupId>org.jvnet.jaxb2.maven2</groupId>-->
-            <!--				<artifactId>maven-jaxb2-plugin</artifactId>-->
-            <!--				<version>0.13.2</version>-->
-            <!--				<executions>-->
-            <!--					<execution>-->
-            <!--						<id>schema2-generate</id>-->
-            <!--						<phase>generate-resources</phase>-->
-            <!--						<goals>-->
-            <!--							<goal>generate</goal>-->
-            <!--						</goals>-->
-            <!--						<configuration>-->
-            <!--							<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>-->
-            <!--							<schemaIncludes>-->
-            <!--								<include>tarifeliYolcu.wsdl</include>-->
-            <!--							</schemaIncludes>-->
-            <!--							<generatePackage>com.tein.uetds.tarifeliYolcuSoap</generatePackage>-->
-            <!--							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>-->
-            <!--						</configuration>-->
-            <!--					</execution>-->
-
-            <!--				</executions>-->
-            <!--			</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -355,28 +235,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-install-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <file>lib/despatch-0.0.1-SNAPSHOT.jar</file>-->
-<!--                    <repositoryLayout>default</repositoryLayout>-->
-<!--                    <groupId>com.tein.edonusum</groupId>-->
-<!--                    <artifactId>despatch</artifactId>-->
-<!--                    <version>1.0.0</version>-->
-<!--                    <packaging>jar</packaging>-->
-<!--                    <generatePom>true</generatePom>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>install-jar-lib</id>-->
-<!--                        <phase>clean</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>install-file</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 </project>

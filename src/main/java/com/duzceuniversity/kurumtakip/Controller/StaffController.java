@@ -1,6 +1,7 @@
 package com.duzceuniversity.kurumtakip.Controller;
 
 import com.duzceuniversity.kurumtakip.DTO.StaffDTO;
+import com.duzceuniversity.kurumtakip.DTO.TableDTO.StaffObject;
 import com.duzceuniversity.kurumtakip.DataBase.Model.Staff.Staff;
 import com.duzceuniversity.kurumtakip.DataBase.Model.Staff.StaffType;
 import com.duzceuniversity.kurumtakip.DataBase.Model.address.City;
@@ -11,6 +12,7 @@ import com.duzceuniversity.kurumtakip.DataBase.Repository.StaffTypeRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CityRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CountryRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.DistrictRepository;
+import com.duzceuniversity.kurumtakip.LOG.Wombat;
 import com.duzceuniversity.kurumtakip.Response.ResponseItem;
 import com.duzceuniversity.kurumtakip.Service.StaffService;
 import com.google.gson.Gson;
@@ -19,6 +21,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -51,14 +55,16 @@ public class StaffController {
     private DistrictRepository districtRepository;
     @Autowired
     private ModelMapper modelMapper;
+    final Logger logger = LoggerFactory.getLogger(Wombat.class);
+    final Wombat wombat = new Wombat();
 
 
     @RequestMapping(value = "/data", method = RequestMethod.POST)
     @ResponseBody
     public String getAllPersonel() {
-
-        List<Staff> personObjectList = staffService.DataResponse();
-        String jsonData = new Gson().toJson(personObjectList);
+        wombat.setTemperature(55);
+        List<StaffObject> staffObjectList = staffService.DataResponse();
+        String jsonData = new Gson().toJson(staffObjectList);
         System.out.println(jsonData);
         return jsonData;
     }
@@ -66,16 +72,18 @@ public class StaffController {
     @RequestMapping(value = "/staffekle", method = RequestMethod.POST)
     public ResponseEntity<ResponseItem> addPerson(@RequestBody StaffDTO staffDto) {
         ResponseItem responseItem = new ResponseItem();
+        wombat.setTemperature(52);
         try {
             if (staffDto.getTcPass() != null) {
                 if (staffRepository.findByTcPass(staffDto.getTcPass()) == null && staffDto.getId() == 0) {
                     responseItem = staffService.save(staffDto);
+                    logger.debug("Sisteme personel kaydedildi...");
                 } else if (staffDto.getId() != 0) {
                     Staff staff = staffRepository.findById(staffDto.getId());
                     if (staff != staffRepository.findByTcPass(staffDto.getTcPass())) {
-                        //responseItem = staffService.save(staffDto);
                         if (staffRepository.findByTcKimlikPasaportAndStatus(staffDto.getTcPass()) == null) {
                             responseItem = staffService.save(staffDto);
+                            logger.debug("Sistemdeki bir personel güncellendi...");
                         } else {
                             responseItem.setMessage("TC Kimlik Numarası Sistemimizde Kayıtlıdır!");
                             responseItem.setResult(false);
@@ -96,6 +104,9 @@ public class StaffController {
                     responseItem.setResult(false);
                     return ResponseEntity.ok(responseItem);
                 }
+            } else {
+                responseItem.setResult(false);
+                responseItem.setMessage("Lütfen Tc/Pass No. Alanını Doldurunuz.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,18 +117,23 @@ public class StaffController {
 
     @GetMapping("/add")
     public String PersonAdd(Model model) {
+        wombat.setTemperature(47);
         List<City> listCity = cityRepository.findAll();
         List<Country> listCountry = countryRepository.findAll();
         List<StaffType> listStaffType = staffTurRepository.findAll();
+        listCountry.get(0).setId(1);
+        listCountry.get(0).setCountryCode("TR");
+        listCountry.get(0).setCountry("Türkiye");
         model.addAttribute("equalCountry", listCountry);
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("Type", listStaffType);
-        model.addAttribute("citys", listCity);
+        model.addAttribute("listCity", listCity);
         return "Staff";
     }
 
     @GetMapping("/staffs")
     public String PersonAdd(HttpServletRequest request, Model model) {
+        wombat.setTemperature(51);
         return "StaffsTable";
     }
 
@@ -305,7 +321,7 @@ public class StaffController {
                     try {
                         String dateInString = formatter.format(row.getCell(13).getDateCellValue());
                         Date date = formatter.parse(dateInString);
-                        staffDto.setBirthday(dateInString);
+                        staffDto.setBirthday(date);
                     } catch (ParseException e) {
                         e.printStackTrace();
                         responseItem.setResult(false);

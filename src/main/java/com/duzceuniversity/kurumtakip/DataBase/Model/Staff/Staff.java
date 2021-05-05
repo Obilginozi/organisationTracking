@@ -1,6 +1,7 @@
 package com.duzceuniversity.kurumtakip.DataBase.Model.Staff;
 
 import com.duzceuniversity.kurumtakip.DataBase.Model.address.Country;
+import com.duzceuniversity.kurumtakip.DataBase.Model.address.District;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,22 +22,27 @@ public class Staff {
     private int id;
     private String name;
     private String surname;
-    private String postalCode;
-    private Date birthday;
-    private String sex;
-    private byte status;
-    private String hesKodu;
-    @OneToOne
-    protected Country uyrukCountry;
-
-    private String tcPass;
     @Email
     private String email;
-
-    @Size(min = 10,max = 11)
+    @Size(min = 10, max = 11)
     private String phone;
-
+    private Date birthday;
+    private String tcPass;
+    private String hesCode;
+    @OneToOne
+    private StaffType staffType;
+    private String staffTypeStr;
+    @OneToOne
+    private Country country;
+    @OneToOne
+    private District district;
     @Size(max = 100)
-    private String adres;
+    private String address;
+    private String postalCode;
+    private String sex;
+    //    @OneToOne
+//    private User user;
+    private byte status;
+    private Date deleteAt;
 
 }

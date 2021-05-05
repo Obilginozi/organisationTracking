@@ -13,9 +13,25 @@ public class Country implements Serializable {
     @Column(name = "country_id")
     private int id;
 
-    private String countryKod;
+    private String countryCode;
 
     private String country;
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public int getId() {
         return id;
@@ -23,13 +39,5 @@ public class Country implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getcountry() {
-        return country;
-    }
-
-    public void setcountry(String country) {
-        this.country = country;
     }
 }

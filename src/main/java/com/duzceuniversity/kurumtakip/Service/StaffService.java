@@ -1,10 +1,13 @@
 package com.duzceuniversity.kurumtakip.Service;
 
 import com.duzceuniversity.kurumtakip.DTO.StaffDTO;
+import com.duzceuniversity.kurumtakip.DTO.TableDTO.StaffObject;
 import com.duzceuniversity.kurumtakip.DataBase.Model.Staff.Staff;
 import com.duzceuniversity.kurumtakip.DataBase.Model.User;
+import com.duzceuniversity.kurumtakip.DataBase.Model.address.District;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.StaffRepository;
-import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CountryRepository;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CityRepository;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.address.DistrictRepository;
 import com.duzceuniversity.kurumtakip.Response.ResponseItem;
 import com.duzceuniversity.kurumtakip.Security.SecurityUtils;
 import com.duzceuniversity.kurumtakip.Util.DateConverter;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +27,9 @@ public class StaffService {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
-    private CountryRepository countryRepository;
+    private CityRepository cityRepository;
+    @Autowired
+    private DistrictRepository districtRepository;
 
     public ResponseItem save(StaffDTO staffDto) {
         try {
@@ -31,7 +37,7 @@ public class StaffService {
             User user = SecurityUtils.getCurrentUserLogin();
             Staff staff = new Staff();
             //DateConverter.StringToDatewith(staffDto.getDt())
-            Date birthdate = DateConverter.StringToDatewith(staffDto.getBirthday());
+            Date birthdate = DateConverter.StringToDatewith(staffDto.getBt());
             staff = modelMapper.map(staffDto, Staff.class);
             staff.setBirthday(birthdate);
             staffRepository.save(staff);
@@ -49,10 +55,19 @@ public class StaffService {
         }
     }
 
-    public List<Staff> DataResponse() {
-        User user = SecurityUtils.getCurrentUserLogin();
+    public List<StaffObject> DataResponse() {
         List<Staff> staffList = staffRepository.findAll();
-        return staffList;
+        for (Staff staff : staffList) {
+            if (staff.getHesCode() == null){
+                staff.setHesCode(" - ");
+            }
+            District district = districtRepository.findByDistrictMernisKod(staff.getDistrict().getDistrictMernisKod());
+//            district.setCity(cityRepository.findById(district.getCity().getId()));
+            staff.setDistrict(district);
+            staff.setStaffTypeStr(staff.getStaffType().getStaffType());
+        }
+        List<StaffObject> staffObjects = Arrays.asList(modelMapper.map(staffList, StaffObject[].class));
+        return staffObjects;
     }
 
     public void deleteById(int id) {
@@ -63,7 +78,7 @@ public class StaffService {
         StaffDTO staffDto = modelMapper.map(staffRepository.findById(id), StaffDTO.class);
         if (staffDto.getBirthday() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            staffDto.setBirthday(sdf.format(staffDto.getBirthday()));
+            staffDto.setBt(sdf.format(staffDto.getBirthday()));
         }
         return staffDto;
     }
