@@ -56,9 +56,9 @@
 	width: 20px;
 }
 .sidebar-menu>li:hover>a, .sidebar-menu>li.active>a {
-	color: #7f5be8;
+	color: #e85b5b;
     background: rgba(129, 90, 232, 0.15);
-    border-left-color: #7d5ce9;
+    border-left-color: #e95c5c;
 }
 .sidebar-menu>li .label, .sidebar-menu>li .badge {
 	margin-top: 3px;
@@ -112,7 +112,7 @@
 	width: auto;
 }
 .sidebar-menu .sidebar-submenu>li.active>a, .sidebar-menu .sidebar-submenu>li>a:hover {
-	color: #7f5be8;
+	color: #e85b5b;
 }
 .sidebar-menu-rtl {
 	list-style: none;
