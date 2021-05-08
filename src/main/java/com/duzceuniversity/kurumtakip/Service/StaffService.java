@@ -8,6 +8,7 @@ import com.duzceuniversity.kurumtakip.DataBase.Model.address.District;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.StaffRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CityRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.DistrictRepository;
+import com.duzceuniversity.kurumtakip.JUnit.JUnit;
 import com.duzceuniversity.kurumtakip.Response.ResponseItem;
 import com.duzceuniversity.kurumtakip.Security.SecurityUtils;
 import com.duzceuniversity.kurumtakip.Util.DateConverter;
@@ -30,6 +31,8 @@ public class StaffService {
     private CityRepository cityRepository;
     @Autowired
     private DistrictRepository districtRepository;
+
+    private final JUnit jUnit = new JUnit();
 
     public ResponseItem save(StaffDTO staffDto) {
         try {
@@ -81,5 +84,10 @@ public class StaffService {
             staffDto.setBt(sdf.format(staffDto.getBirthday()));
         }
         return staffDto;
+    }
+
+    public void UniqTest(){
+        List<Staff> staffList = staffRepository.findAll();
+        jUnit.testFindMax(staffList);
     }
 }

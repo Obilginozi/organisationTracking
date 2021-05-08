@@ -6,6 +6,7 @@ import com.duzceuniversity.kurumtakip.DataBase.Model.address.District;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.UserRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.CountryRepository;
 import com.duzceuniversity.kurumtakip.DataBase.Repository.address.DistrictRepository;
+import com.duzceuniversity.kurumtakip.Service.StaffService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.hibernate.criterion.Example;
@@ -36,6 +37,8 @@ public class UserCreateAndInsertToDB implements CommandLineRunner {
     CountryRepository countryRepository;
     @Autowired
     DistrictRepository districtRepository;
+    @Autowired
+    StaffService staffService;
 
     public UserCreateAndInsertToDB(UserRepository userRepository,DataSource dataSource) {
         this.userRepository = userRepository;
@@ -58,6 +61,8 @@ public class UserCreateAndInsertToDB implements CommandLineRunner {
             this.userRepository.saveAll(users);
             System.out.println("Database Kurulumu Tamamlandı....................................");
             System.out.println("User Kayıtları Tamamlandı.......................................");
+        }else {
+            staffService.UniqTest();
         }
     }
 

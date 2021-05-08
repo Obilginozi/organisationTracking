@@ -1,15 +1,20 @@
 package com.duzceuniversity.kurumtakip.Controller;
 
 import com.duzceuniversity.kurumtakip.DataBase.Model.IpInfo;
+import com.duzceuniversity.kurumtakip.DataBase.Model.Staff.Staff;
 import com.duzceuniversity.kurumtakip.DataBase.Model.User;
+import com.duzceuniversity.kurumtakip.DataBase.Repository.StaffRepository;
+import com.duzceuniversity.kurumtakip.JUnit.JUnit;
 import com.duzceuniversity.kurumtakip.Response.ResponseItem;
 import com.duzceuniversity.kurumtakip.Service.DashBoardService;
+import com.duzceuniversity.kurumtakip.Service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")

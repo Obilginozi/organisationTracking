@@ -1,6 +1,7 @@
 package com.duzceuniversity.kurumtakip;
 
-import com.duzceuniversity.kurumtakip.Security.KurumTakipAuditorAware;
+import com.duzceuniversity.kurumtakip.Service.KurumTakipAuditorAware;
+import com.duzceuniversity.kurumtakip.Service.StaffService;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;

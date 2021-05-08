@@ -1,4 +1,4 @@
-package com.duzceuniversity.kurumtakip.Security;
+package com.duzceuniversity.kurumtakip.Service;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
