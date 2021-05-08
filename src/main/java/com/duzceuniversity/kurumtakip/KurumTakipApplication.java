@@ -39,8 +39,7 @@ public class KurumTakipApplication extends SpringBootServletInitializer implemen
         String url = "http://localhost:8080";
         rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
         Logger logger = LoggerFactory.getLogger(KurumTakipApplication.class);
-        logger.debug("Proje debug da çalışmakta.");
-        logger.info("System is running...");
+        logger.info("System is running................................");
     }
 
     @Bean

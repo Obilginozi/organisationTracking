@@ -10,6 +10,8 @@ import com.duzceuniversity.kurumtakip.Service.StaffService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.hibernate.criterion.Example;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -59,8 +61,9 @@ public class UserCreateAndInsertToDB implements CommandLineRunner {
             User admin = new User("admin", passwordEncoder.encode("admin"), "Admin", "ADMIN", "admin@admin.com", "ADMIN", country, district);
             List<User> users = Arrays.asList(admin, demo);
             this.userRepository.saveAll(users);
-            System.out.println("Database Kurulumu Tamamlandı....................................");
-            System.out.println("User Kayıtları Tamamlandı.......................................");
+            Logger logger = LoggerFactory.getLogger(UserCreateAndInsertToDB.class);
+            logger.info("Mock Datas Succesfully Inserted..................");
+            logger.info("Initial Setup Configuration in Progress..........");
         }else {
             staffService.UniqTest();
         }
