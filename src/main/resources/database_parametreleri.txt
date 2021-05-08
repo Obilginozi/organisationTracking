@@ -9162,19 +9162,19 @@ VALUES
 INSERT INTO kurumtakip.staff_type(id, staff_type)
 VALUES
 (
-3, 'Host'
+3, 'Operatör'
 );
 
 INSERT INTO kurumtakip.staff_type(id, staff_type)
 VALUES
 (
-4, 'Hostes'
+4, 'Memur'
 );
 
 INSERT INTO kurumtakip.staff_type(id, staff_type)
 VALUES
 (
-5, 'Rehber'
+5, 'Mühendis'
 );
 
 INSERT INTO kurumtakip.staff_type(id, staff_type)

@@ -148,9 +148,9 @@ public class StaffController {
         model.addAttribute("equalCountry", staff.getCountry().getId());
         model.addAttribute("listCountry", listCountry);
         model.addAttribute("districtLists", districtLists);
-        model.addAttribute("Tur", listStaffType);
+        model.addAttribute("Type", listStaffType);
         model.addAttribute("staff", staff);
-        model.addAttribute("citys", cityList);
+        model.addAttribute("listCity", cityList);
         return "Staff";
     }
 
