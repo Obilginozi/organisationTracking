@@ -7,6 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -15,14 +16,16 @@ public interface StaffRepository extends PagingAndSortingRepository<Staff, Integ
     @Query("SELECT u FROM Staff u WHERE u.status = 1 and u.id=:id")
     Staff findById(@Param("id") int StaffId);
 
+    @Query("SELECT u FROM Staff u WHERE u.id=:id")
+    Staff findByIdForDelete(@Param("id") int StaffId);
+
     @Query("SELECT u FROM Staff u WHERE u.status = 1 and u.tcPass=:tcPass")
     Staff findByTcKimlikPasaportAndStatus(@Param("tcPass") String tcPass);
 
-    @Modifying
-    @Query("update Staff p set p.status =0 WHERE p.id=:id")
-    void deleteById(@Param("id") int id);
-
     Staff findByTcPass(String tc);
+
+    @Query("SELECT u FROM Staff u WHERE u.deleteAt is NULL")
+    List<Staff> findAllNotDeleted();
 
     List<Staff> findAll();
 

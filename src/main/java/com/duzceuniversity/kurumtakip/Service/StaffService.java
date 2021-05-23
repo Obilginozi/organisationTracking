@@ -37,9 +37,7 @@ public class StaffService {
     public ResponseItem save(StaffDTO staffDto) {
         try {
             ResponseItem responseItem = new ResponseItem();
-            User user = SecurityUtils.getCurrentUserLogin();
             Staff staff = new Staff();
-            //DateConverter.StringToDatewith(staffDto.getDt())
             Date birthdate = DateConverter.StringToDatewith(staffDto.getBt());
             staff = modelMapper.map(staffDto, Staff.class);
             staff.setBirthday(birthdate);
@@ -59,7 +57,7 @@ public class StaffService {
     }
 
     public List<StaffObject> DataResponse() {
-        List<Staff> staffList = staffRepository.findAll();
+        List<Staff> staffList = staffRepository.findAllNotDeleted();
         for (Staff staff : staffList) {
             if (staff.getHesCode() == null){
                 staff.setHesCode(" - ");
@@ -74,7 +72,10 @@ public class StaffService {
     }
 
     public void deleteById(int id) {
-        staffRepository.deleteById(id);
+        Staff staff = staffRepository.findByIdForDelete(id);
+        Date nowDate = new Date();
+        staff.setDeleteAt(nowDate);
+        staffRepository.save(staff);
     }
 
     public StaffDTO findById(int id) {

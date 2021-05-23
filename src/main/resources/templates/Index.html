@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title> Ana Sayfa</title>
+    <title>Ana Sayfa</title>
     <!-- loader-->
     <link th:href="@{/css/pace.min.css}" rel="stylesheet"/>
     <!--favicon-->
@@ -40,156 +40,6 @@
     <div class="clearfix"></div>
     <div class="content-wrapper">
         <div class="container-fluid">
-<!--            <div class="row mt-3">-->
-<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
-<!--                    <div class="card gradient-worldcup bubble rounded-0">-->
-<!--                        <div class="card-body card-block p-3">-->
-<!--                            <div class="media align-items-center">-->
-<!--                                <div class="media-body text-left">-->
-<!--                                    <p class="text-white mb-0">Günlük Sefer</p>-->
-<!--                                    <h5 class="text-white mb-0" id="chart01"></h5>-->
-<!--                                </div>-->
-<!--                                <div class="w-icon"><i class="zmdi zmdi-truck text-white"></i></div>-->
-<!--                            </div>-->
-<!--                            <div id="chart1" class="mt-1"></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
-<!--                    <div class="card gradient-rainbow bubble rounded-0">-->
-<!--                        <div class="card-body card-block p-3">-->
-<!--                            <div class="media align-items-center">-->
-<!--                                <div class="media-body text-left">-->
-<!--                                    <p class="text-white mb-0">Çalışan Personel</p>-->
-<!--                                    <h5 class="text-white mb-0" id="chart02"></h5>-->
-<!--                                </div>-->
-<!--                                <div class="w-icon"><i class="zmdi zmdi-accounts-alt text-white"></i></div>-->
-<!--                            </div>-->
-<!--                            <div id="chart2" class="mt-1"></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
-<!--                    <div class="card gradient-smile bubble rounded-0">-->
-<!--                        <div class="card-body card-block p-3">-->
-<!--                            <div class="media align-items-center">-->
-<!--                                <div class="media-body text-left">-->
-<!--                                    <p class="text-white mb-0" style="font-size: small">Günlük Öz Sermayeli Sefer</p>-->
-<!--                                    <h5 class="text-white mb-0" id="chart03"></h5>-->
-<!--                                </div>-->
-<!--                                <div class="w-icon"><i class="zmdi zmdi-balance-wallet text-white"></i></div>-->
-<!--                            </div>-->
-<!--                            <div id="chart3" class="mt-1"></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-md-6 col-lg-3 col-xl-3">-->
-<!--                    <div class="card gradient-pinki bubble rounded-0">-->
-<!--                        <div class="card-body card-block p-3">-->
-<!--                            <div class="media align-items-center">-->
-<!--                                <div class="media-body text-left">-->
-<!--                                    <p class="text-white mb-0">Günlük Sözleşmeli Sefer</p>-->
-<!--                                    <h5 class="text-white mb-0" id="chart04"></h5>-->
-<!--                                </div>-->
-<!--                                <div class="w-icon"><i class="zmdi zmdi-chart-donut text-white"></i></div>-->
-<!--                            </div>-->
-<!--                            <div id="chart4" class="mt-1"></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash;end row&ndash;&gt;-->
-<!--            <div class="row">-->
-<!--                <div class="col-12 col-lg-8 col-xl-8">-->
-<!--                    <div class="card rounded-0">-->
-<!--                        <div class="card-header text-uppercase">Aylık Gelir &amp; Gider</div>-->
-<!--                        <div class="card-body pb-0">-->
-<!--                            <div class="">-->
-<!--                                <div id="chart5"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 col-lg-4 col-xl-4">-->
-<!--                    <div class="card rounded-0">-->
-<!--                        <div class="card-header text-uppercase">Aylık Sefer</div>-->
-<!--                        <div class="card-body pb-0">-->
-<!--                            <div class="">-->
-<!--                                <div id="chart6"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash;end row&ndash;&gt;-->
-<!--            <div class="card-deck flex-column flex-lg-row">-->
-<!--                <div class="card rounded-0">-->
-<!--                    <div class="card-header text-uppercase">Araç Trafiği</div>-->
-<!--                    <div class="card-body">-->
-<!--                        <div id="aracSayacChart">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="card rounded-0">-->
-<!--                    <div class="card-header text-uppercase">Çalışan Personeller</div>-->
-<!--                    <div class="card-body">-->
-<!--                        <table id="personelList" class="table" style="font-size: large">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody>-->
-
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="card rounded-0">-->
-<!--                    <div class="card-header text-uppercase border-0 text-center sr-only">Sefer</div>-->
-<!--                    <div class="card-body">-->
-<!--                        <ul class="nav nav-pills nav-pills-custom nav-justified" role="tablist">-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" data-toggle="pill" href="#piil-13"><span class="">Aylık</span></a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link active" data-toggle="pill" href="#piil-14"><span-->
-<!--                                        class="">Haftalık</span></a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" data-toggle="pill" href="#piil-15"><span class="">Günlük</span></a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; Tab panes &ndash;&gt;-->
-<!--                    <div class="tab-content pt-0">-->
-<!--                        <div id="piil-13" class="tab-pane fade">-->
-<!--                            <div class="chart-container-10 d-flex align-items-center justify-content-center">-->
-<!--                                <div id="chart7"></div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <h4 class="text-center mb-0"></h4>-->
-<!--                            <p class="text-center extra-small-font mb-3"></p>-->
-<!--                        </div>-->
-
-<!--                        <div id="piil-14" class="tab-pane active">-->
-<!--                            <div class="chart-container-10 d-flex align-items-center justify-content-center">-->
-<!--                                <div id="chart8"></div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <h4 class="text-center mb-0"></h4>-->
-<!--                            <p class="text-center extra-small-font mb-3"></p>-->
-<!--                        </div>-->
-
-<!--                        <div id="piil-15" class="tab-pane fade">-->
-<!--                            <div class="chart-container-10 d-flex align-items-center justify-content-center">-->
-<!--                                <div id="chart9"></div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <h4 class="text-center mb-0"></h4>-->
-<!--                            <p class="text-center extra-small-font mb-3"></p>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="row" sec:authorize="hasAnyRole('ADMIN')">
                 <div class="col-12 col-lg-12 col-xl-12">
                     <div class="card rounded-0">
@@ -225,12 +75,6 @@
                                         <td>Fen İşleri</td>
                                         <td>12345678910</td>
                                         <td><span class="text-success">Müsait</span></td>
-<!--                                        <td>-->
-<!--                                            <div class="progress" style="height: 4px;">-->
-<!--                                                <div class="progress-bar gradient-lovekiss" role="progressbar"-->
-<!--                                                     style="width: 30%"></div>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
                                         <td>
                                             <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
                                             </button>
@@ -248,16 +92,10 @@
                                             </div>
                                         </td>
                                         <td>Ertürk</td>
-                                        <td></td>
+                                        <td>Memur</td>
                                         <td>Kanalizasyon</td>
                                         <td>12345678910</td>
                                         <td><span class="text-success">Görevlendirildi</span></td>
-<!--                                        <td>-->
-<!--                                            <div class="progress" style="height: 4px;">-->
-<!--                                                <div class="progress-bar gradient-ohhappiness" role="progressbar"-->
-<!--                                                     style="width: 100%"></div>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
                                         <td>
                                             <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
                                             </button>
@@ -279,12 +117,6 @@
                                         <td>Kara Yolları</td>
                                         <td>12345678910</td>
                                         <td><span class="text-danger">İzinli</span></td>
-<!--                                        <td>-->
-<!--                                            <div class="progress" style="height: 4px;">-->
-<!--                                                <div class="progress-bar gradient-deepblue" role="progressbar"-->
-<!--                                                     style="width: 75%"></div>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
                                         <td>
                                             <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
                                             </button>
@@ -306,12 +138,6 @@
                                         <td>Temizlik İşleri</td>
                                         <td>12345678910</td>
                                         <td><span class="text-success">Görevlendirildi</span></td>
-<!--                                        <td>-->
-<!--                                            <div class="progress" style="height: 4px;">-->
-<!--                                                <div class="progress-bar gradient-ohhappiness" role="progressbar"-->
-<!--                                                     style="width: 100%"></div>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
                                         <td>
                                             <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
                                             </button>
@@ -333,12 +159,6 @@
                                         <td>Mali Hizmetler</td>
                                         <td>12345678910</td>
                                         <td><span class="text-danger">Raporlu</span></td>
-<!--                                        <td>-->
-<!--                                            <div class="progress" style="height: 4px;">-->
-<!--                                                <div class="progress-bar gradient-lovekiss" role="progressbar"-->
-<!--                                                     style="width: 60%"></div>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
                                         <td>
                                             <button type="button" class="btn btn-sm btn-round btn-primary">Detaylar
                                             </button>
@@ -351,7 +171,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row" sec:authorize="hasAnyRole('ADMIN')">
                 <div class="col-12 col-lg-12 col-xl-6">
                     <div class="card rounded-0">
@@ -406,21 +225,8 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="row">-->
-<!--                <div class="col-12 col-lg-4 col-xl-4">-->
-<!--                    <div class="card">-->
-<!--                        <div class="card-header text-uppercase">U-ETDS Sistemi</div>-->
-<!--                        <div class="card-body">-->
-<!--                            <div class="chart-container d-flex align-items-center justify-content-center">-->
-<!--                                <div id="application-by-source"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="overlay toggle-menu"></div>
         </div>
-
     </div><!--End content-wrapper-->
     <a href="javaScript:void(0);" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 </div>

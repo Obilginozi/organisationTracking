@@ -1584,7 +1584,6 @@ $(function () {
 
     $.get('/anasayfa/bildirimSayac', function (response) {
         bildirimSayac = JSON.parse(response);
-        // chart uetds Eklenen
         var options = {
             chart: {
                 height: 365,
