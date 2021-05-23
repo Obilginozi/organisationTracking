@@ -193,7 +193,7 @@ $(document).ready(function () {
                     "surname" : $("#soyAdi").val(),
                     "tcPass":$("#tcKimlikPasaportNo").val(),
                     "email":$("#email").val(),
-                    "hesCode":$("#hesKodu").val(),
+                    "hesCode":$("#hesCode").val(),
                     "phone":$("#telefon").val(),
                     "address":$("#adres").val(),
                     "sex":$("#cinsiyet").val(),

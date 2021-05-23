@@ -136,7 +136,8 @@
                                                             <option disabled="disabled" selected="selected"> ----- Uyruk
                                                                 Seçiniz -----
                                                             </option>
-                                                            <option th:each="listCountry : ${listCountry}" th:value="${listCountry.id}"
+                                                            <option th:each="listCountry : ${listCountry}"
+                                                                    th:value="${listCountry.id}"
                                                                     th:text="${listCountry.country}"></option>
                                                         </select>
                                                     </div>
@@ -145,7 +146,8 @@
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="ulke"
                                                                 name="uyruk" required>
-                                                            <option th:each="listCountry : ${listCountry}" th:value="${listCountry.id}"
+                                                            <option th:each="listCountry : ${listCountry}"
+                                                                    th:value="${listCountry.id}"
                                                                     th:text="${listCountry.country}"
                                                                     th:selected="${listCountry.id}==${equalCountry}"></option>
                                                         </select>
@@ -165,35 +167,12 @@
                                                            id="tcKimlikPasaportNo"
                                                            placeholder="Kimlik No Giriniz" name="tc" required>
                                                 </div>
-<!--                                                <div class="col-md-6">-->
-<!--                                                    <label for="pasaportNo" class="">Pasaport Numarası </label>-->
-<!--                                                    <input th:if="${staff != null}"-->
-<!--                                                           th:value="${staff.tcPass}"-->
-<!--                                                           class="form-control form-control-sm"-->
-<!--                                                           id="pasaportNo" placeholder="Pasaport No Giriniz" name="tc"-->
-<!--                                                           maxlength="11">-->
-<!--                                                    <input th:if="${staff == null}"-->
-<!--                                                           class="form-control form-control-sm" maxlength="11"-->
-<!--                                                           id="pasaportNo"-->
-<!--                                                           placeholder="Pasaport No Giriniz" name="tc">-->
-<!--                                                </div>-->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <div class="row">
-<!--                                                <div class="col-md-6">-->
-<!--                                                    <label for="hesKodu" class="">HES Kodu </label>-->
-<!--                                                    <input th:if="${staff != null}"-->
-<!--                                                           th:value="${staff.hesKodu}" maxlength="12"-->
-<!--                                                           class="form-control form-control-sm"-->
-<!--                                                           id="hesKodu" name="hesKodu" placeholder="HES Kodu Giriniz">-->
-<!--                                                    <input th:if="${staff == null}" maxlength="12"-->
-<!--                                                           class="form-control form-control-sm" id="hesKodu"-->
-<!--                                                           name="hesKodu" placeholder="HES Kodu Giriniz">-->
-<!--                                                </div>-->
-
                                                 <div class="col-md-6">
                                                     <div class="form-group" th:if="${staff == null}">
                                                         <label for="cinsiyet" class="">Cİnsİyet <span
@@ -292,7 +271,8 @@
                                                             <option disabled="disabled" selected="selected"> ----- Şehir
                                                                 Seçiniz -----
                                                             </option>
-                                                            <option th:each="listCity : ${listCity}" th:value="${listCity.id}"
+                                                            <option th:each="listCity : ${listCity}"
+                                                                    th:value="${listCity.id}"
                                                                     th:text="${listCity.getCity()}"
                                                             ></option>
                                                         </select>
@@ -302,7 +282,8 @@
                                                                 style="color: red">(*)</span></label>
                                                         <select class="form-control form-control-sm" id="selectCity"
                                                                 name="selectCity" required>
-                                                            <option th:each="listCity : ${listCity}" th:value="${listCity.id}"
+                                                            <option th:each="listCity : ${listCity}"
+                                                                    th:value="${listCity.id}"
                                                                     th:text="${listCity.city}"
                                                                     th:selected="${listCity.id} == ${staff.district.city.id}"
                                                             ></option>
@@ -389,41 +370,61 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="card-body">
+                                                            <label for="hesCode" class="">HES Kodu </label>
+                                                            <input th:if="${staff != null}"
+                                                                   th:value="${staff.hesCode}" maxlength="12"
+                                                                   class="form-control form-control-sm"
+                                                                   id="hesCode" name="hesKodu"
+                                                                   placeholder="HES Kodu Giriniz">
+                                                            <input th:if="${staff == null}" maxlength="12"
+                                                                   class="form-control form-control-sm" id="hesCode"
+                                                                   name="hesKodu" placeholder="HES Kodu Giriniz">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card-body">
+                                                        <label>&emsp; &nbsp;&nbsp;</label>
+                                                        <div class="form-group" th:if="${staff == null}">
+                                                            <div class="icheck-material-success icheck-inline">
+                                                                <input type="radio" id="inline-radio-success"
+                                                                       name="durum"
+                                                                       checked value=1>
+                                                                <label for="inline-radio-success">Müsait</label>
+                                                            </div>
+                                                            <div class="icheck-material-primary icheck-inline">
+                                                                <input type="radio" id="inline-radio-primary"
+                                                                       name="durum"
+                                                                       value=2>
+                                                                <label for="inline-radio-primary">Raporlu/İzinli</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" th:if="${staff != null}">
+                                                            <div class="icheck-material-success icheck-inline">
+                                                                <input type="radio" th:checked="${staff.status == 1}"
+                                                                       id="inline-radio-success" name="durum" checked
+                                                                       value=1>
+                                                                <label for="inline-radio-success">Müsait</label>
+                                                            </div>
+                                                            <div class="icheck-material-primary icheck-inline">
+                                                                <input type="radio" th:checked="${staff.status == 2}"
+                                                                       id="inline-radio-primary" name="durum" value=0>
+                                                                <label for="inline-radio-primary">Raporlu/İzinli</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="row">
                                                 <label>&emsp; &nbsp;&nbsp;</label>
                                                 <div class="col-md-6">
-                                                    <div class="form-group" th:if="${staff == null}">
-
-                                                        <div class="icheck-material-success icheck-inline">
-                                                            <input type="radio" id="inline-radio-success" name="durum"
-                                                                   checked value=1>
-                                                            <label for="inline-radio-success">Aktİf</label>
-                                                        </div>
-                                                        <div class="icheck-material-primary icheck-inline">
-                                                            <input type="radio" id="inline-radio-primary" name="durum"
-                                                                   value=2>
-                                                            <label for="inline-radio-primary">Pasİf</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group" th:if="${staff != null}">
-                                                        <div class="icheck-material-success icheck-inline">
-                                                            <input type="radio" th:checked="${staff.status == 1}"
-                                                                   id="inline-radio-success" name="durum" checked
-                                                                   value=1>
-                                                            <label for="inline-radio-success">Aktİf</label>
-                                                        </div>
-                                                        <div class="icheck-material-primary icheck-inline">
-                                                            <input type="radio" th:checked="${staff.status == 2}"
-                                                                   id="inline-radio-primary" name="durum" value=0>
-                                                            <label for="inline-radio-primary">Pasİf</label>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="btn-group pull-right" th:if="${staff == null}">

@@ -136,7 +136,7 @@
                 </li>
                 <li class="nav-item col-xl">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                        <span class="user-profile"><img src="https://via.placeholder.com/110X110" class="img-circle"
+                        <span class="user-profile"><img th:src="@{/images/logo-icon.png}" size="30%"  class="img-circle"
                                                         alt="user avatar"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -144,7 +144,7 @@
                             <a href="/kullanici/profili">
                                 <div class="media">
                                     <div class="avatar"><img class="align-self-start mr-3"
-                                                             src="https://via.placeholder.com/110X110"
+                                                             th:src="@{/images/logo-icon.png}" size="40%"
                                                              alt="user avatar"></div>
                                     <div class="media-body">
                                         <h6 class="mt-2 user-title"><span sec:authentication="name"></span></h6>
